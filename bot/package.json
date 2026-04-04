@@ -1,0 +1,17 @@
+{
+  "name": "dentaljourneyindia-bot",
+  "version": "2.0.0",
+  "description": "AI-powered Telegram bot for DentalJourneyIndia with Twenty CRM integration",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7"
+  }
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalJourneyIndia — Premium Dental Care & Tourism in India</title>
+<meta name="description" content="Save 70-90% on dental treatments in India. AI-powered dental tourism concierge. Verified clinics in Hyderabad, Vijayawada & Guntur.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0B1426;--navy-light:#121E36;--navy-mid:#1A2A4A;--gold:#C9A84C;--teal:#2EC4B6;--teal-dark:#1A9E92;--coral:#E07A5F;--white:#F8F6F0;--gray-400:#8A8880;--gray-600:#5A5850;--font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--navy);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-family:var(--font-body);font-weight:600;font-size:15px;text-decoration:none;transition:all .4s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:var(--navy);box-shadow:0 4px 24px rgba(46,196,182,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(46,196,182,0.45)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,76,0.4)}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.btn-telegram{background:#2AABEE;color:#fff;box-shadow:0 4px 20px rgba(42,171,238,0.3)}
+.btn-telegram:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,171,238,0.4)}
+.section-label{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.accent{color:var(--teal)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:all .3s}
+nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-text{font-family:var(--font-display);font-size:20px;color:var(--white);font-weight:600}
+.logo-text span{color:var(--teal)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--white);text-decoration:none;font-size:14px;font-weight:500;opacity:0.8;transition:opacity .3s}
+.nav-links a:hover{opacity:1}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* HERO */
+.hero{padding:140px 0 80px;text-align:center}
+.hero h1{font-family:var(--font-display);font-size:clamp(32px,5vw,56px);font-weight:600;line-height:1.15;margin-bottom:24px}
+.hero p{font-size:18px;color:var(--gray-400);max-width:640px;margin:0 auto 40px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;flex-wrap:wrap}
+.hero-stats .stat{text-align:center}
+.hero-stats .stat-num{font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--teal)}
+.hero-stats .stat-label{font-size:13px;color:var(--gray-400);margin-top:4px}
+
+/* TREATMENTS */
+.treatments{padding:80px 0}
+.treatment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.treatment-card{background:var(--navy-light);border:1px solid rgba(46,196,182,0.1);border-radius:16px;padding:32px;transition:transform .3s,border-color .3s}
+.treatment-card:hover{transform:translateY(-4px);border-color:rgba(46,196,182,0.3)}
+.treatment-card h3{font-family:var(--font-display);font-size:20px;margin-bottom:8px}
+.treatment-card .price-row{display:flex;justify-content:space-between;margin:16px 0 8px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.05)}
+.treatment-card .india-price{color:var(--teal);font-weight:700;font-size:18px}
+.treatment-card .us-price{color:var(--gray-400);text-decoration:line-through;font-size:14px}
+.treatment-card .savings{background:rgba(46,196,182,0.1);color:var(--teal);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;margin-top:8px}
+
+/* DESTINATIONS */
+.destinations{padding:80px 0}
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px}
+.dest-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:32px;transition:transform .3s}
+.dest-card:hover{transform:translateY(-4px)}
+.dest-card h3{font-family:var(--font-display);font-size:22px;margin-bottom:8px;color:var(--gold)}
+.dest-card p{color:var(--gray-400);line-height:1.6;font-size:14px}
+.dest-card .attractions{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.dest-card .tag{background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px}
+
+/* HOW IT WORKS */
+.how-it-works{padding:80px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:40px}
+.step{text-align:center;padding:24px}
+.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:var(--navy);font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-size:16px;margin-bottom:8px}
+.step p{font-size:13px;color:var(--gray-400);line-height:1.6}
+
+/* CONTACT FORM */
+.contact{padding:80px 0}
+.contact-card{background:var(--navy-light);border:1px solid rgba(46,196,182,0.15);border-radius:20px;padding:48px;max-width:600px;margin:0 auto}
+.contact-card h2{font-family:var(--font-display);font-size:28px;margin-bottom:8px}
+.contact-card p{color:var(--gray-400);margin-bottom:32px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--gray-400)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;background:var(--navy-mid);border:1px solid rgba(46,196,182,0.15);border-radius:10px;color:var(--white);font-size:14px;font-family:inherit;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-600)}
+.form-group select{cursor:pointer}
+.form-group select option{background:var(--navy-mid);color:var(--white)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-success{display:none;text-align:center;padding:32px}
+.form-success h3{color:var(--teal);font-size:22px;margin-bottom:8px}
+
+/* CTA */
+.cta{padding:80px 0;text-align:center}
+.cta-card{background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(46,196,182,0.2);border-radius:20px;padding:64px 48px}
+.cta-card h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);margin-bottom:16px}
+.cta-card p{color:var(--gray-400);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand p{color:var(--gray-400);font-size:13px;margin-top:12px;line-height:1.6}
+.footer-col h4{font-size:13px;font-weight:600;margin-bottom:16px;color:var(--teal)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{color:var(--gray-400);text-decoration:none;font-size:13px;transition:color .3s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600)}
+@media(max-width:480px){.footer-bottom{flex-direction:column;gap:8px}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+<div class="container nav-inner">
+  <a href="#" class="logo"><span class="logo-text">Dental<span>Journey</span>India</span></a>
+  <div class="nav-links">
+    <a href="#treatments">Treatments</a>
+    <a href="#destinations">Destinations</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#contact">Get a Quote</a>
+    <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Chat on Telegram</a>
+  </div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+  <span class="section-label">AI-Powered Dental Tourism</span>
+  <h1>Premium Dental Care in India.<br>Save up to <span class="accent">90%</span>.</h1>
+  <p>Get world-class dental treatments at a fraction of the cost — with an AI concierge that plans your entire journey, from treatment to tourism.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+    <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Chat on Telegram</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">70-90%</div><div class="stat-label">Cost Savings</div></div>
+    <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Verified Clinics</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Cities</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">AI Support</div></div>
+  </div>
+</div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="treatments" id="treatments">
+<div class="container">
+  <span class="section-label reveal">Compare & Save</span>
+  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Treatment <span class="accent">Pricing</span></h2>
+  <div class="treatment-grid">
+    <div class="treatment-card reveal">
+      <h3>Dental Implant</h3>
+      <p style="color:var(--gray-400);font-size:13px">Single tooth, titanium implant + crown</p>
+      <div class="price-row"><span class="india-price">$300 - $800</span><span class="us-price">$3,000 - $6,000 US</span></div>
+      <span class="savings">Save up to 90%</span>
+    </div>
+    <div class="treatment-card reveal">
+      <h3>Porcelain Veneers</h3>
+      <p style="color:var(--gray-400);font-size:13px">Per tooth, premium porcelain</p>
+      <div class="price-row"><span class="india-price">$150 - $400</span><span class="us-price">$1,000 - $2,500 US</span></div>
+      <span class="savings">Save up to 85%</span>
+    </div>
+    <div class="treatment-card reveal">
+      <h3>Root Canal + Crown</h3>
+      <p style="color:var(--gray-400);font-size:13px">Complete treatment with zirconia crown</p>
+      <div class="price-row"><span class="india-price">$100 - $300</span><span class="us-price">$1,500 - $3,000 US</span></div>
+      <span class="savings">Save up to 90%</span>
+    </div>
+    <div class="treatment-card reveal">
+      <h3>Full Mouth Rehab</h3>
+      <p style="color:var(--gray-400);font-size:13px">Complete restoration, all teeth</p>
+      <div class="price-row"><span class="india-price">$3,000 - $8,000</span><span class="us-price">$25,000 - $50,000 US</span></div>
+      <span class="savings">Save up to 90%</span>
+    </div>
+    <div class="treatment-card reveal">
+      <h3>Smile Design (8 Veneers)</h3>
+      <p style="color:var(--gray-400);font-size:13px">Complete smile makeover</p>
+      <div class="price-row"><span class="india-price">$1,200 - $3,000</span><span class="us-price">$8,000 - $20,000 US</span></div>
+      <span class="savings">Save up to 85%</span>
+    </div>
+    <div class="treatment-card reveal">
+      <h3>All-on-4 Implants</h3>
+      <p style="color:var(--gray-400);font-size:13px">Full arch on 4 implants</p>
+      <div class="price-row"><span class="india-price">$2,500 - $5,000</span><span class="us-price">$20,000 - $30,000 US</span></div>
+      <span class="savings">Save up to 85%</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+<div class="container">
+  <span class="section-label reveal">Dental + Tourism</span>
+  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Our <span class="accent">Destinations</span></h2>
+  <div class="dest-grid">
+    <div class="dest-card reveal">
+      <h3>Hyderabad</h3>
+      <p>City of pearls — home to world-class dental clinics, rich Mughal heritage, and incredible biryani. Our top destination for premium dental care.</p>
+      <div class="attractions"><span class="tag">Charminar</span><span class="tag">Golconda Fort</span><span class="tag">Ramoji Film City</span><span class="tag">Hussain Sagar</span></div>
+    </div>
+    <div class="dest-card reveal">
+      <h3>Vijayawada</h3>
+      <p>Gateway to Andhra Pradesh — excellent mid-range clinics along the scenic Krishna River. Best value for quality dental work.</p>
+      <div class="attractions"><span class="tag">Kanaka Durga Temple</span><span class="tag">Undavalli Caves</span><span class="tag">Bhavani Island</span></div>
+    </div>
+    <div class="dest-card reveal">
+      <h3>Guntur</h3>
+      <p>Historic city near the ancient Buddhist site of Amaravati. Most affordable dental care with experienced specialists.</p>
+      <div class="attractions"><span class="tag">Amaravati</span><span class="tag">Kondaveedu Fort</span><span class="tag">Nagarjuna Sagar</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+<div class="container">
+  <span class="section-label reveal">Simple Process</span>
+  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">How It <span class="accent">Works</span></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <h3>Tell Us Your Needs</h3>
+      <p>Chat with our AI concierge about your dental needs, budget, and travel preferences.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <h3>Get Matched</h3>
+      <p>We recommend verified clinics with transparent pricing and real patient reviews.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <h3>Plan Your Trip</h3>
+      <p>Our AI builds your complete itinerary — treatment schedule plus tourism experiences.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <h3>Smile & Explore</h3>
+      <p>Get world-class dental care and enjoy an incredible Indian adventure.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact" id="contact">
+<div class="container">
+  <div class="contact-card reveal">
+    <span class="section-label">Get Started</span>
+    <h2>Get a Free <span class="accent">Quote</span></h2>
+    <p>Tell us about your dental needs and we'll send you a personalized treatment plan with pricing.</p>
+    <form id="leadForm">
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="John Smith" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Country</label>
+          <select name="country"><option value="">Select your country</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label>Treatment</label>
+          <select name="treatment"><option value="">What do you need?</option><option>Dental Implants</option><option>Porcelain Veneers</option><option>Root Canal / Crown</option><option>Full Mouth Rehab</option><option>Smile Design</option><option>All-on-4 Implants</option><option>Teeth Whitening</option><option>Not Sure</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label>Tell us more (optional)</label><textarea name="message" rows="3" placeholder="Any details about your dental needs, timeline, or questions..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Send My Free Quote Request</button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <h3>Thank You!</h3>
+      <p style="color:var(--gray-400)">Our AI concierge will review your details and get back to you shortly. You can also chat with us instantly on Telegram.</p>
+      <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank" style="margin-top:16px">Chat Now on Telegram</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<div class="container">
+  <div class="cta-card reveal">
+    <span class="section-label">Start Your Journey</span>
+    <h2>Ready to Save on <span class="accent">Dental Care</span>?</h2>
+    <p>Chat with our AI concierge — get instant quotes, clinic comparisons, and a personalized travel plan.</p>
+    <div class="cta-btns">
+      <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Chat on Telegram</a>
+      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-text" style="font-size:18px">Dental<span style="color:var(--teal)">Journey</span>India</span>
+      <p>Your AI-powered dental tourism concierge. Premium dental care in India, made simple.</p>
+    </div>
+    <div class="footer-col"><h4>Treatments</h4><ul><li><a href="#treatments">Dental Implants</a></li><li><a href="#treatments">Porcelain Veneers</a></li><li><a href="#treatments">Smile Design</a></li><li><a href="#treatments">Full Mouth Rehab</a></li></ul></div>
+    <div class="footer-col"><h4>Destinations</h4><ul><li><a href="#destinations">Hyderabad</a></li><li><a href="#destinations">Vijayawada</a></li><li><a href="#destinations">Guntur</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://t.me/DentalJourneyIndia_bot" target="_blank">Telegram Bot</a></li><li><a href="#contact">Get a Quote</a></li><li><a href="mailto:hello@dentaljourneyindia.org">Email Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>2026 DentalJourneyIndia. All rights reserved.</span>
+    <span>Powered by AI</span>
+  </div>
+</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Nav scroll effect
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+// Reveal on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Lead form submission
+const API_URL = 'https://dentaljourneyindia.org/api';
+document.getElementById('leadForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      country: form.country.value,
+      treatment: form.treatment.value,
+      message: form.message.value,
+      source: 'website_form'
+    };
+    await fetch(API_URL + '/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+  } catch(err) { console.error('Form error:', err); }
+  form.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
+
+<!-- Chat Widget -->
+<script src="/chat-widget.js" data-api="https://dentaljourneyindia.org/api"></script>
+</body>
+</html>
