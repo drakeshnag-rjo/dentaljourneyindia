@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const crm = require('./crm');
 const { getClinicData } = require('./data');
-const { ollamaChat, getFallbackResponse } = require('./ai');
+const { ollamaWebChat, getFallbackResponse } = require("./ai");
 
 const app = express();
 const PORT = process.env.WEB_API_PORT || 3001;
@@ -67,7 +67,7 @@ app.post('/api/chat/message', async (req, res) => {
     }
     session.messages.push({ role: 'user', content: message });
     if (session.messages.length > 20) session.messages = session.messages.slice(-20);
-    let aiText = await ollamaChat(SYSTEM_PROMPT, session.messages, 512);
+    let aiText = await ollamaWebChat(SYSTEM_PROMPT, session.messages, 512);
     if (!aiText) aiText = getFallbackResponse(message);
     const leadData = extractLeadData(aiText);
     const cleaned = cleanResponse(aiText);

@@ -330,7 +330,7 @@ const observer=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 // Lead form submission
-const API_URL = 'https://dentaljourneyindia.org/api';
+const API_URL = 'https://dentaljourneyindia.org';
 document.getElementById('leadForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = e.target;
@@ -358,6 +358,6 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
 </script>
 
 <!-- Chat Widget -->
-<script src="/chat-widget.js" data-api="https://dentaljourneyindia.org/api"></script>
+<script src="/chat-widget.js" data-api="https://dentaljourneyindia.org"></script>
 </body>
 </html>
