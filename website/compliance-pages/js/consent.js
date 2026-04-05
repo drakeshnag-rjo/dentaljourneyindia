@@ -163,7 +163,6 @@
     prefs.timestamp = new Date().toISOString();
     setCookie(COOKIE_NAME, prefs, COOKIE_DAYS);
     applyPreferences(prefs);
-    window.dispatchEvent(new CustomEvent("cookieConsent", { detail: prefs }));
     hideBanner();
   }
 
@@ -281,7 +280,6 @@
     if (prefs.consented) {
       // User already made a choice — apply silently
       applyPreferences(prefs);
-    window.dispatchEvent(new CustomEvent("cookieConsent", { detail: prefs }));
     } else {
       // First visit — show banner
       showBanner();

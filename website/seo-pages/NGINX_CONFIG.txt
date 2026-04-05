@@ -1,0 +1,51 @@
+# === ADD THIS TO YOUR NGINX CONFIG FOR dentaljourneyindia.org ===
+# Location: wherever your current server block is for dentaljourneyindia.org
+#
+# This enables clean URLs like /dental-implants-india-cost
+# instead of /dental-implants-india-cost.html
+
+# Blog pages — clean URLs (no .html extension)
+location /blog {
+    try_files /blog.html =404;
+}
+
+location /dental-implants-india-cost {
+    try_files /dental-implants-india-cost.html =404;
+}
+
+location /dental-tourism-india-guide {
+    try_files /dental-tourism-india-guide.html =404;
+}
+
+location /dental-implants-hyderabad {
+    try_files /dental-implants-hyderabad.html =404;
+}
+
+location /veneers-india-cost {
+    try_files /veneers-india-cost.html =404;
+}
+
+location /all-on-4-india {
+    try_files /all-on-4-india.html =404;
+}
+
+location /dental-tourism-india-vs-thailand {
+    try_files /dental-tourism-india-vs-thailand.html =404;
+}
+
+location /full-mouth-rehab-india {
+    try_files /full-mouth-rehab-india.html =404;
+}
+
+location /is-dental-tourism-india-safe {
+    try_files /is-dental-tourism-india-safe.html =404;
+}
+
+location /smile-makeover-india {
+    try_files /smile-makeover-india.html =404;
+}
+
+# OR — simpler approach: just add this ONE rule instead of all the above:
+# location / {
+#     try_files $uri $uri.html $uri/ =404;
+# }

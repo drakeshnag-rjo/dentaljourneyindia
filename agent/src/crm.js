@@ -1,11 +1,11 @@
 /**
  * Twenty CRM integration — fetch leads, update status, add notes
- * 
+ *
  * Twenty CRM API quirks handled here:
- *  - POST returns data.createPerson / data.createNote
+ *  - Uses /rest/ endpoints (not /api/objects/)
+ *  - POST returns data directly (not nested in data.createPerson)
  *  - Notes use bodyV2.markdown (not body)
- *  - Linking: targetPersonId (not personId)
- *  - Filter API unreliable: using in-memory fetch + filter
+ *  - Linking: noteTargets with personId
  *  - Telegram ID stored in jobTitle as "tg:TELEGRAM_ID"
  */
 const axios = require('axios');
@@ -32,8 +32,9 @@ async function getAllPeople(forceRefresh = false) {
   }
 
   try {
-    const res = await axios.get(`${BASE_URL}/api/objects/people?limit=200`, { headers: headers() });
-    const records = res.data?.data?.people || [];
+    const res = await axios.get(`${BASE_URL}/rest/people?limit=200`, { headers: headers() });
+    // /rest/ returns { data: [...] } or just [...]
+    const records = res.data?.data?.people || res.data?.data || [];
     personCache = records;
     lastCacheTime = Date.now();
     console.log(`[CRM] Fetched ${records.length} people`);
@@ -46,9 +47,6 @@ async function getAllPeople(forceRefresh = false) {
 
 /**
  * Get leads that need email follow-ups
- * A "lead" is a person with an email and a non-empty source (website_form, telegram, chat_widget)
- * 
- * Returns leads with computed follow-up stage based on creation date
  */
 async function getLeadsForFollowUp() {
   const people = await getAllPeople(true);
@@ -56,12 +54,9 @@ async function getLeadsForFollowUp() {
 
   return people
     .filter(p => {
-      // Must have an email
       const email = p.emails?.primaryEmail;
       if (!email) return false;
 
-      // Check jobTitle for source or any indicator they're a lead
-      // Exclude clinic contacts (we handle those separately)
       const job = (p.jobTitle || '').toLowerCase();
       if (job.includes('clinic:') || job.includes('dentist') || job.includes('doctor')) return false;
 
@@ -71,8 +66,6 @@ async function getLeadsForFollowUp() {
       const createdAt = new Date(p.createdAt);
       const daysSinceCreated = Math.floor((now - createdAt) / (1000 * 60 * 60 * 24));
 
-      // Determine follow-up stage
-      // Stage tracking via CRM notes (we'll check notes to avoid re-sending)
       return {
         id: p.id,
         name: `${p.name?.firstName || ''} ${p.name?.lastName || ''}`.trim() || 'Unknown',
@@ -82,7 +75,6 @@ async function getLeadsForFollowUp() {
         city: p.city || null,
         createdAt: p.createdAt,
         daysSinceCreated,
-        // Follow-up schedule: Day 1, Day 3, Day 7
         followUpDue: daysSinceCreated >= 0 ? getNextFollowUp(daysSinceCreated) : null,
       };
     })
@@ -96,7 +88,7 @@ function getNextFollowUp(days) {
   if (days >= 0 && days < 1) return 'day1';
   if (days >= 2 && days < 4) return 'day3';
   if (days >= 6 && days < 8) return 'day7';
-  return null; // Outside follow-up windows
+  return null;
 }
 
 /**
@@ -104,25 +96,16 @@ function getNextFollowUp(days) {
  */
 async function getNotesForPerson(personId) {
   try {
-    const res = await axios.get(
-      `${BASE_URL}/api/objects/notes?filter={"noteTargets":{"personId":{"eq":"${personId}"}}}`,
-      { headers: headers() }
-    );
-    return res.data?.data?.notes || [];
+    const res = await axios.get(`${BASE_URL}/rest/notes?limit=50`, { headers: headers() });
+    const allNotes = res.data?.data?.notes || res.data?.data || [];
+    // Filter in memory by checking note targets
+    return allNotes.filter(n => {
+      const targets = n.noteTargets || [];
+      return targets.some(t => t.personId === personId || t.targetPersonId === personId);
+    });
   } catch (err) {
-    // Filter API unreliable — try fetching all notes
-    try {
-      const res = await axios.get(`${BASE_URL}/api/objects/notes?limit=50`, { headers: headers() });
-      const allNotes = res.data?.data?.notes || [];
-      // Filter in memory by checking note targets
-      return allNotes.filter(n => {
-        const targets = n.noteTargets || [];
-        return targets.some(t => t.personId === personId);
-      });
-    } catch (err2) {
-      console.error(`[CRM] Failed to fetch notes for ${personId}:`, err2.message);
-      return [];
-    }
+    console.error(`[CRM] Failed to fetch notes for ${personId}:`, err.message);
+    return [];
   }
 }
 
@@ -143,11 +126,18 @@ async function wasFollowUpSent(personId, stage) {
  */
 async function addNote(personId, markdown) {
   try {
-    const res = await axios.post(`${BASE_URL}/api/objects/notes`, {
+    // Step 1: Create the note
+    const res = await axios.post(`${BASE_URL}/rest/notes`, {
       bodyV2: { markdown },
-      noteTargets: [{ personId }],
     }, { headers: headers() });
-    return res.data?.data?.createNote || res.data;
+    const noteId = res.data?.data?.createNote?.id || res.data?.id;
+    // Step 2: Link note to person via noteTargets
+    await axios.post(`${BASE_URL}/rest/noteTargets`, {
+      noteId: noteId,
+      targetPerson: { connect: { id: personId } },
+    }, { headers: headers() });
+    console.log(`[CRM] Note created and linked to ${personId}`);
+    return { id: noteId };
   } catch (err) {
     console.error(`[CRM] Failed to add note for ${personId}:`, err.message);
     return null;
@@ -159,13 +149,14 @@ async function addNote(personId, markdown) {
  */
 async function createTask(personId, title, dueDate) {
   try {
-    const res = await axios.post(`${BASE_URL}/api/objects/tasks`, {
+    const res = await axios.post(`${BASE_URL}/rest/tasks`, {
       title,
       status: 'TODO',
       dueAt: dueDate || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       taskTargets: [{ personId }],
     }, { headers: headers() });
-    return res.data?.data?.createTask || res.data;
+    const task = res.data?.data || res.data;
+    return task;
   } catch (err) {
     console.error(`[CRM] Failed to create task for ${personId}:`, err.message);
     return null;

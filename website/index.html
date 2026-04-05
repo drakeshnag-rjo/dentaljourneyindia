@@ -187,6 +187,35 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
   }
 }
 </script>
+<!-- Google Analytics 4 (consent mode) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HT3RVLE6YS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    wait_for_update: 500
+  });
+  gtag("js", new Date());
+  gtag("config", "G-HT3RVLE6YS", { anonymize_ip: true });
+  // Listen for cookie consent
+  window.addEventListener("cookieConsent", function(e) {
+    if (e.detail && e.detail.analytics) {
+      gtag("consent", "update", { analytics_storage: "granted" });
+    }
+  });
+  // Check if already consented (reads dji_consent cookie)
+  try {
+    var m = document.cookie.match(/(^| )dji_consent=([^;]+)/);
+    if (m) {
+      var consent = JSON.parse(decodeURIComponent(m[2]));
+      if (consent.analytics) {
+        gtag("consent", "update", { analytics_storage: "granted" });
+      }
+    }
+  } catch(e) {}
+</script>
 </head>
 <body>
 
@@ -404,7 +433,7 @@ const observer=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 // Lead form submission
-const API_URL = 'https://dentaljourneyindia.org';
+const API_URL = 'https://dentaljourneyindia.org/api';
 document.getElementById('leadForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = e.target;
