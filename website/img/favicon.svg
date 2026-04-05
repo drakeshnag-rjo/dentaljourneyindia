@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <clipPath id="fc">
+      <circle cx="24" cy="24" r="23"/>
+    </clipPath>
+  </defs>
+  <circle cx="24" cy="24" r="24" fill="#0f4c5c" opacity="0.15"/>
+  <g clip-path="url(#fc)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0,0;-48,0" dur="12s" repeatCount="indefinite"/>
+      <path d="M28 12 C30 11, 34 12, 36 16 C37 19, 37 24, 35 28 C33 32, 30 34, 28 32 C26 30, 26 24, 27 18Z" fill="#2EC4B6" opacity="0.2"/>
+      <path d="M16 16 C18 14, 22 15, 22 19 C22 24, 20 28, 18 30 C16 32, 14 30, 14 26 C14 22, 15 18, 16 16Z" fill="#2EC4B6" opacity="0.15"/>
+      <path d="M76 12 C78 11, 82 12, 84 16 C85 19, 85 24, 83 28 C81 32, 78 34, 76 32 C74 30, 74 24, 75 18Z" fill="#2EC4B6" opacity="0.2"/>
+      <path d="M64 16 C66 14, 70 15, 70 19 C70 24, 68 28, 66 30 C64 32, 62 30, 62 26 C62 22, 63 18, 64 16Z" fill="#2EC4B6" opacity="0.15"/>
+    </g>
+  </g>
+  <path d="M24 8 C24 8, 20 4, 16 7 C12 10, 11 16, 13 24 C15 30, 16 34, 17 39 C17 41, 18 42, 19.5 42 C21 42, 21.3 41, 21.3 39 C21.3 36, 22.5 36, 23 39 C23 41, 23.3 42, 24.8 42 C26.3 42, 27 41, 27.3 39 C28.3 34, 29 30, 30.5 24 C32.5 16, 32 10, 28 7 C24 4, 24 8, 24 8Z" fill="#2EC4B6"/>
+  <path d="M20.5 15 C20.5 15, 19 13, 18.5 16 C18 18, 18 21, 19 23" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="24" cy="24" r="23" fill="none" stroke="#2EC4B6" stroke-width="1.5" opacity="0.3"/>
+  <g>
+    <animateMotion dur="4s" repeatCount="indefinite" path="M6 14 C16 6, 38 6, 44 18 C48 26, 38 38, 24 40 C10 40, 2 34, 4 30 C0 24, 0 18, 6 14" rotate="auto"/>
+    <ellipse cx="0" cy="0" rx="4.5" ry="1.2" fill="#C9A84C"/>
+    <path d="M-0.5 0 L-2.5 -3 L0.3 -0.4 Z" fill="#C9A84C" opacity="0.85"/>
+    <path d="M-0.5 0 L-2.5 3 L0.3 0.4 Z" fill="#C9A84C" opacity="0.85"/>
+  </g>
+</svg>

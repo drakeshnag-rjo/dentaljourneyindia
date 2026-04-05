@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 90">
+  <defs>
+    <clipPath id="gc2">
+      <circle cx="40" cy="40" r="35"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(5, 4)">
+    <circle cx="40" cy="40" r="36" fill="#0f4c5c" opacity="0.12"/>
+    <g clip-path="url(#gc2)">
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0,0;-80,0" dur="12s" repeatCount="indefinite"/>
+        <path d="M45 20 C48 18, 55 20, 58 25 C60 28, 62 32, 60 38 C58 42, 55 45, 50 48 C46 50, 42 48, 40 44 C38 40, 38 35, 40 30 C41 25, 43 22, 45 20Z" fill="#2EC4B6" opacity="0.18"/>
+        <path d="M48 34 C50 32, 54 33, 55 36 C56 40, 54 46, 50 50 C48 52, 46 50, 46 46 C46 42, 47 38, 48 34Z" fill="#2EC4B6" opacity="0.25"/>
+        <path d="M60 35 C62 33, 66 34, 68 37 C69 40, 67 44, 64 45 C62 46, 60 44, 60 41 C60 38, 60 36, 60 35Z" fill="#2EC4B6" opacity="0.15"/>
+        <path d="M28 28 C30 24, 35 25, 36 30 C37 36, 36 44, 33 50 C31 54, 28 56, 26 52 C24 48, 24 40, 25 34 C26 30, 27 28, 28 28Z" fill="#2EC4B6" opacity="0.15"/>
+        <path d="M28 18 C30 16, 36 16, 38 20 C39 22, 38 26, 35 27 C32 28, 28 26, 27 23 C26 20, 27 18, 28 18Z" fill="#2EC4B6" opacity="0.15"/>
+        <path d="M125 20 C128 18, 135 20, 138 25 C140 28, 142 32, 140 38 C138 42, 135 45, 130 48 C126 50, 122 48, 120 44 C118 40, 118 35, 120 30 C121 25, 123 22, 125 20Z" fill="#2EC4B6" opacity="0.18"/>
+        <path d="M128 34 C130 32, 134 33, 135 36 C136 40, 134 46, 130 50 C128 52, 126 50, 126 46 C126 42, 127 38, 128 34Z" fill="#2EC4B6" opacity="0.25"/>
+        <path d="M140 35 C142 33, 146 34, 148 37 C149 40, 147 44, 144 45 C142 46, 140 44, 140 41Z" fill="#2EC4B6" opacity="0.15"/>
+        <path d="M108 28 C110 24, 115 25, 116 30 C117 36, 116 44, 113 50 C111 54, 108 56, 106 52 C104 48, 104 40, 105 34Z" fill="#2EC4B6" opacity="0.15"/>
+        <path d="M108 18 C110 16, 116 16, 118 20 C119 22, 118 26, 115 27 C112 28, 108 26, 107 23Z" fill="#2EC4B6" opacity="0.15"/>
+        <line x1="20" y1="4" x2="20" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+        <line x1="40" y1="4" x2="40" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+        <line x1="60" y1="4" x2="60" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+        <line x1="100" y1="4" x2="100" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+        <line x1="120" y1="4" x2="120" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+        <line x1="140" y1="4" x2="140" y2="76" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+      </g>
+    </g>
+    <ellipse cx="40" cy="24" rx="30" ry="4" fill="none" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+    <ellipse cx="40" cy="40" rx="36" ry="5" fill="none" stroke="#2EC4B6" stroke-width="0.4" opacity="0.1"/>
+    <ellipse cx="40" cy="56" rx="30" ry="4" fill="none" stroke="#2EC4B6" stroke-width="0.4" opacity="0.08"/>
+    <path d="M40 14 C40 14, 34 7, 27 12 C20 17, 19 25, 22 36 C25 46, 27 52, 28 59 C28.5 62, 30 64, 32 64 C34 64, 34.8 62, 34.8 59 C34.8 54, 36.5 54, 37.5 59 C37.5 62, 38 64, 40.5 64 C43 64, 44 62, 44.5 59 C45.5 52, 47 46, 49.5 36 C52.5 25, 51.5 17, 44.5 12 C37.5 7, 40 14, 40 14Z" fill="#2EC4B6"/>
+    <path d="M34 22 C34 22, 31 19, 30 23 C29 27, 29 31, 31 35" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+    <circle cx="47" cy="20" r="1.5" fill="white" opacity="0.3"/>
+    <circle cx="40" cy="40" r="36" fill="none" stroke="#2EC4B6" stroke-width="1.5" opacity="0.3"/>
+    <path d="M10 25 C30 12, 68 12, 82 30" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.35"/>
+    <path d="M82 30 C88 42, 72 60, 42 62" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4 4" opacity="0.25"/>
+    <path d="M42 62 C18 62, 2 55, 6 50" fill="none" stroke="#C9A84C" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.15"/>
+    <path d="M6 50 C-2 42, -4 32, 10 25" fill="none" stroke="#C9A84C" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.1"/>
+    <g>
+      <animateMotion dur="5s" repeatCount="indefinite" path="M10 25 C30 12, 68 12, 82 30 C88 42, 72 60, 42 62 C18 62, 2 55, 6 50 C-2 42, -4 32, 10 25" rotate="auto"/>
+      <ellipse cx="0" cy="0" rx="7" ry="1.8" fill="#C9A84C"/>
+      <path d="M-1 0 L-4 -5 L0.5 -0.6 Z" fill="#C9A84C" opacity="0.85"/>
+      <path d="M-1 0 L-4 5 L0.5 0.6 Z" fill="#C9A84C" opacity="0.85"/>
+      <path d="M-5.5 0 L-8 -2.8 L-6.2 0 Z" fill="#C9A84C" opacity="0.6"/>
+      <path d="M-5.5 0 L-8 2.8 L-6.2 0 Z" fill="#C9A84C" opacity="0.4"/>
+      <ellipse cx="5.5" cy="0" rx="2" ry="1" fill="#dbbe6a" opacity="0.4"/>
+    </g>
+    <circle cx="55" cy="38" r="3" fill="#FF9933" opacity="0.9"/>
+    <circle cx="55" cy="38" r="6" fill="#FF9933" opacity="0.1">
+      <animate attributeName="r" values="6;11;6" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.12;0.01;0.12" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <text x="105" y="32" font-family="'DM Sans', system-ui, sans-serif" font-size="30" font-weight="600" fill="#F8F6F0">Dental<tspan fill="#2EC4B6">Journey</tspan>India</text>
+  <text x="105" y="52" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="400" fill="#8A8880">World-class dental care &amp; tourism</text>
+  <rect x="105" y="62" width="24" height="3" rx="1.5" fill="#FF9933" opacity="0.85"/>
+  <rect x="132" y="62" width="24" height="3" rx="1.5" fill="#FFFFFF" opacity="0.5"/>
+  <rect x="159" y="62" width="24" height="3" rx="1.5" fill="#138808" opacity="0.85"/>
+</svg>
