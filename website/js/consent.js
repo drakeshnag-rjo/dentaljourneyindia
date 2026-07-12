@@ -150,7 +150,10 @@
   }
 
   function deleteCookie(name) {
+    // Expire on the current host AND on the top-level domain — GA sets its
+    // cookies on .dentaljourneyindia.org by default, so a host-only delete misses them.
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.dentaljourneyindia.org';
   }
 
   // ===================== CONSENT LOGIC =====================
@@ -170,14 +173,16 @@
   function applyPreferences(prefs) {
     // Enable/disable analytics
     if (prefs.analytics) {
-      // Placeholder: load Google Analytics or Plausible here
-      // e.g., loadScript('https://plausible.io/js/plausible.js');
+      // GA4 is already loaded in each page's <head> with Consent Mode
+      // default-denied; the "cookieConsent" event dispatched by
+      // savePreferences() flips analytics_storage to granted there.
       console.log('[Consent] Analytics: enabled');
     } else {
       // Remove analytics cookies if they exist
       deleteCookie('_ga');
       deleteCookie('_gid');
       deleteCookie('_gat');
+      deleteCookie('_ga_HT3RVLE6YS'); // GA4 measurement-ID cookie
       console.log('[Consent] Analytics: disabled');
     }
 

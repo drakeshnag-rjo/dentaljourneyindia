@@ -6,15 +6,31 @@
   <title>Medical Disclaimer | DentalJourneyIndia</title>
   <meta name="description" content="Medical disclaimer for DentalJourneyIndia. Important information about our dental tourism services.">
   <link rel="canonical" href="https://dentaljourneyindia.org/medical-disclaimer">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DentalJourneyIndia">
+  <meta property="og:title" content="Medical Disclaimer | DentalJourneyIndia">
+  <meta property="og:description" content="Medical disclaimer for DentalJourneyIndia. Important information about our dental tourism services.">
+  <meta property="og:url" content="https://dentaljourneyindia.org/medical-disclaimer">
+  <meta property="og:image" content="https://dentaljourneyindia.org/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dentaljourneyindia.org/img/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#faf9f7;--text:#1a1a1a;--text-s:#555;--accent:#0c7a8a;--border:#e0ddd8;--warn:#b45309;--warn-bg:#fef3c7}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;font-size:16px}
-    nav{background:#fff;border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;z-index:100}
+    nav{background:#0B1426;border-bottom:1px solid rgba(46,196,182,0.25);padding:12px 0;position:sticky;top:0;z-index:100}
     nav .c{display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;padding:0 24px}
-    nav a.logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--accent);text-decoration:none}
-    nav .nl a{color:var(--text-s);text-decoration:none;margin-left:24px;font-size:15px}
+    nav a.logo{display:flex;align-items:center;text-decoration:none}
+    nav a.logo img{height:40px;width:auto;display:block}
+    nav .nl a{color:rgba(248,246,240,0.85);text-decoration:none;margin-left:24px;font-size:15px}
+    nav .nl a:hover{color:#2EC4B6}
+    @media(max-width:480px){nav a.logo img{height:32px}nav .nl a{margin-left:14px;font-size:13px}}
     .container{max-width:760px;margin:0 auto;padding:0 24px}
     .hero{padding:48px 0 32px;text-align:center}
     .hero h1{font-family:'DM Serif Display',serif;font-size:32px;margin-bottom:8px}
@@ -41,11 +57,13 @@
     wait_for_update: 500
   });
   gtag("js", new Date());
-  gtag("config", "G-HT3RVLE6YS", { anonymize_ip: true });
-  // Listen for cookie consent
+  gtag("config", "G-HT3RVLE6YS");
+  // Listen for cookie consent (grant AND revoke)
   window.addEventListener("cookieConsent", function(e) {
     if (e.detail && e.detail.analytics) {
       gtag("consent", "update", { analytics_storage: "granted" });
+    } else {
+      gtag("consent", "update", { analytics_storage: "denied" });
     }
   });
   // Check if already consented (reads dji_consent cookie)
@@ -63,7 +81,7 @@
 <body>
 
 <nav><div class="c">
-  <a href="/" class="logo">🦷 DentalJourneyIndia</a>
+  <a href="/" class="logo"><img src="/img/logo.svg" alt="DentalJourneyIndia — World-class dental care &amp; tourism"></a>
   <div class="nl"><a href="/">Home</a><a href="/blog">Blog</a><a href="/#contact">Get a Quote</a></div>
 </div></nav>
 
@@ -112,7 +130,8 @@
 </div></article>
 
 <footer><div class="container">
-  <p><a href="/privacy-policy">Privacy Policy</a> · <a href="/cookie-policy">Cookie Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/medical-disclaimer">Medical Disclaimer</a></p>
+  <p><a href="/privacy-policy">Privacy Policy</a> · <a href="/cookie-policy">Cookie Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/medical-disclaimer">Medical Disclaimer</a> · <a href="#" data-consent-settings>Cookie Settings</a></p>
+  <p style="margin-top:8px"><a href="#" data-consent-settings>Do Not Sell or Share My Personal Information</a></p>
   <p style="margin-top:8px">© 2026 DentalJourneyIndia. All rights reserved.</p>
 </div></footer>
 

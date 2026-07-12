@@ -14,12 +14,18 @@
 <meta property="og:url" content="https://dentaljourneyindia.org/">
 <meta property="og:site_name" content="DentalJourneyIndia">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://dentaljourneyindia.org/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dental Implants in India | Save 70-90% — DentalJourneyIndia">
 <meta name="twitter:description" content="AI-powered dental tourism platform. Get affordable dental implants, veneers &amp; dental care in India from verified clinics.">
+<meta name="twitter:image" content="https://dentaljourneyindia.org/img/og-image.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dental Implants in India | Dental Tourism & Affordable Dental Care — DentalJourneyIndia</title>
-<meta name="description" content="Save 70-90% on dental implants, veneers & crowns in India. Trusted dental tourism platform connecting international patients with verified clinics in Hyderabad. Get a free quote today.">
+<title>Dental Implants in India | Save 70-90% — DentalJourneyIndia</title>
+<meta name="description" content="Save 70-90% on dental implants, veneers & crowns in India. Verified clinics in Hyderabad with transparent pricing. Get your free quote within 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -47,7 +53,18 @@ nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:1
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{color:var(--white);text-decoration:none;font-size:14px;font-weight:500;opacity:0.8;transition:opacity .3s}
 .nav-links a:hover{opacity:1}
-@media(max-width:768px){.nav-links{display:none}}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:10px 8px;flex-direction:column;gap:5px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav-toggle{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(11,20,38,0.98);backdrop-filter:blur(12px);border-bottom:1px solid rgba(46,196,182,0.15);padding:8px 24px 20px;box-shadow:0 16px 32px rgba(0,0,0,0.4)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px 0;font-size:15px;opacity:0.9;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .nav-links a.btn{margin-top:12px;justify-content:center;border-bottom:none;padding:14px 32px}
+}
 
 /* HERO */
 .hero{padding:140px 0 80px;text-align:center}
@@ -104,6 +121,31 @@ nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:1
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 .form-success{display:none;text-align:center;padding:32px}
 .form-success h3{color:var(--teal);font-size:22px;margin-bottom:8px}
+.form-consent{display:flex;align-items:flex-start;gap:10px;margin:16px 0 4px;font-size:13px;color:var(--gray-400);line-height:1.5;cursor:pointer}
+.form-consent input{width:16px;height:16px;margin-top:2px;accent-color:var(--teal);flex-shrink:0;cursor:pointer}
+.form-consent a{color:var(--teal)}
+.form-error{display:none;margin-top:14px;padding:12px 16px;background:rgba(224,122,95,0.12);border:1px solid rgba(224,122,95,0.4);border-radius:10px;color:var(--coral);font-size:14px;line-height:1.5}
+.form-error a{color:var(--teal)}
+
+/* HOW WE VERIFY */
+.verify{padding:80px 0}
+.verify-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.verify-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:28px}
+.verify-card h3{font-family:var(--font-display);font-size:17px;margin-bottom:10px;color:var(--gold)}
+.verify-card p{font-size:13px;color:var(--gray-400);line-height:1.7}
+.verify-note{margin-top:28px;font-size:14px;color:var(--gray-400)}
+.verify-note a{color:var(--teal)}
+
+/* FAQ */
+.faq{padding:80px 0}
+.faq-list{max-width:800px;margin:40px auto 0}
+.faq-item{background:var(--navy-light);border:1px solid rgba(46,196,182,0.1);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-item summary{padding:20px 24px;cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--teal);font-size:22px;font-weight:400;flex-shrink:0;transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 24px 20px;color:var(--gray-400);font-size:14px;line-height:1.7}
+.faq-item p a{color:var(--teal)}
 
 /* CTA */
 .cta{padding:80px 0;text-align:center}
@@ -114,7 +156,7 @@ nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:1
 
 /* FOOTER */
 footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:32px}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 .footer-brand p{color:var(--gray-400);font-size:13px;margin-top:12px;line-height:1.6}
@@ -153,12 +195,7 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
   "@type": "WebSite",
   "name": "DentalJourneyIndia",
   "url": "https://dentaljourneyindia.org",
-  "description": "Dental tourism in India — affordable dental implants, veneers, and dental care for international patients",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://dentaljourneyindia.org/blog?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "description": "Dental tourism in India — affordable dental implants, veneers, and dental care for international patients"
 }
 </script>
 <script type="application/ld+json">
@@ -169,6 +206,8 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
   "url": "https://dentaljourneyindia.org",
   "description": "Dental tourism facilitator connecting international patients with dental clinics in India for implants, veneers, crowns, and full mouth rehabilitation.",
   "medicalSpecialty": "Dentistry",
+  "address": {"@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN"},
+  "email": "hello@dentaljourneyindia.org",
   "areaServed": [
     {"@type": "Country", "name": "United States"},
     {"@type": "Country", "name": "United Kingdom"},
@@ -179,12 +218,50 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     "@type": "OfferCatalog",
     "name": "Dental Treatments in India",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Dental Implants"}, "priceRange": "$300-$800"},
-      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Porcelain Veneers"}, "priceRange": "$150-$400"},
-      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "All-on-4 Implants"}, "priceRange": "$2500-$5000"},
-      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Full Mouth Rehabilitation"}, "priceRange": "$3000-$8000"}
+      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Dental Implants"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 300, "maxPrice": 800, "priceCurrency": "USD"}},
+      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Porcelain Veneers"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 150, "maxPrice": 400, "priceCurrency": "USD"}},
+      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "All-on-4 Implants"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 2500, "maxPrice": 5000, "priceCurrency": "USD"}},
+      {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "name": "Full Mouth Rehabilitation"}, "priceSpecification": {"@type": "PriceSpecification", "minPrice": 3000, "maxPrice": 8000, "priceCurrency": "USD"}}
     ]
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much can I save on dental treatment in India?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Dental treatment in India typically costs 70–90% less than in the US, UK, or Australia. For example, a single dental implant costs $300 - $800 in India versus $3,000 - $6,000 in the US. Even after adding flights and accommodation, most patients save thousands of dollars."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is dental tourism in India safe?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes — at the right clinic. Indian dentists complete a 5-year BDS degree (specialists add a 3-year MDS) and must be registered with the Dental Council of India. Look for NABH- or JCI-accredited clinics with modern sterilization standards. Our safety guide has a full 10-point checklist."}
+    },
+    {
+      "@type": "Question",
+      "name": "How long do I need to stay in India?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Most treatment plans fit a 7-day trip: examination and digital imaging in the first days, treatment appointments interspersed with rest days, and final fittings and a review before you fly home. Your exact schedule depends on your treatment plan, so build in 1–2 buffer days. See our complete tourism guide for a day-by-day breakdown."}
+    },
+    {
+      "@type": "Question",
+      "name": "How does the process work?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Tell us your dental needs and share any existing X-rays or dental records. You'll receive a preliminary treatment plan with pricing within 24 hours, then compare quotes from 2–3 verified clinics before confirming your plan and booking travel."}
+    },
+    {
+      "@type": "Question",
+      "name": "What does a quote or consultation cost?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Nothing — the quote is completely free and comes with no obligation. Tell us what you need and we'll send a personalized treatment plan with pricing."}
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a special visa for dental treatment in India?",
+      "acceptedAnswer": {"@type": "Answer", "text": "India offers an e-Medical Visa for patients, and an e-Tourist Visa also works for dental trips. Both are applied for online and typically processed in 2–3 business days. The e-Medical Visa lets you bring one companion."}
+    }
+  ]
 }
 </script>
 <!-- Google Analytics 4 (consent mode) -->
@@ -198,12 +275,11 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     wait_for_update: 500
   });
   gtag("js", new Date());
-  gtag("config", "G-HT3RVLE6YS", { anonymize_ip: true });
-  // Listen for cookie consent
+  gtag("config", "G-HT3RVLE6YS");
+  // Listen for cookie consent (grant AND revoke)
   window.addEventListener("cookieConsent", function(e) {
-    if (e.detail && e.detail.analytics) {
-      gtag("consent", "update", { analytics_storage: "granted" });
-    }
+    var granted = !!(e.detail && e.detail.analytics);
+    gtag("consent", "update", { analytics_storage: granted ? "granted" : "denied" });
   });
   // Check if already consented (reads dji_consent cookie)
   try {
@@ -222,11 +298,13 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 <!-- NAV -->
 <nav id="navbar">
 <div class="container nav-inner">
-  <a href="#" class="logo"><img src="/img/logo.svg" alt="DentalJourneyIndia - World-class dental care &amp; tourism" style="height:50px;width:auto;"></a>
-  <div class="nav-links">
+  <a href="/" class="logo"><img src="/img/logo.svg" alt="DentalJourneyIndia - World-class dental care &amp; tourism" style="height:50px;width:auto;"></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
     <a href="#treatments">Treatments</a>
     <a href="#destinations">Destinations</a>
     <a href="#how-it-works">How It Works</a>
+    <a href="/blog">Guides</a>
     <a href="#contact">Get a Quote</a>
     <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Chat on Telegram</a>
   </div>
@@ -238,7 +316,7 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 <div class="container">
   <span class="section-label">AI-Powered Dental Tourism</span>
   <h1>Premium Dental Care in India.<br>Save up to <span class="accent">90%</span>.</h1>
-  <p>Get world-class dental treatments at a fraction of the cost — with an AI concierge that plans your entire journey, from treatment to tourism.</p>
+  <p>Get world-class dental treatments at a fraction of the cost — accreditation-checked clinics, transparent written pricing, and a free personalized quote within 24 hours.</p>
   <div class="hero-btns">
     <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
     <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Chat on Telegram</a>
@@ -337,7 +415,7 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     <div class="step reveal">
       <div class="step-num">2</div>
       <h3>Get Matched</h3>
-      <p>We recommend verified clinics with transparent pricing and real patient reviews.</p>
+      <p>We recommend verified clinics with transparent pricing and accreditation you can check.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">3</div>
@@ -350,6 +428,33 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
       <p>Get world-class dental care and enjoy an incredible Indian adventure.</p>
     </div>
   </div>
+</div>
+</section>
+
+<!-- HOW WE VERIFY CLINICS -->
+<section class="verify" id="verify">
+<div class="container">
+  <span class="section-label reveal">Trust, Earned</span>
+  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">How We <span class="accent">Verify Clinics</span></h2>
+  <div class="verify-grid">
+    <div class="verify-card reveal">
+      <h3>Accreditation Checked</h3>
+      <p>We look for NABH or JCI accreditation — audits covering sterilization protocols, infection control, equipment maintenance, and patient safety procedures.</p>
+    </div>
+    <div class="verify-card reveal">
+      <h3>Credentials Verified</h3>
+      <p>Dentists must be registered with the Dental Council of India. We check qualifications — a 5-year BDS degree, with specialists holding an additional 3-year MDS.</p>
+    </div>
+    <div class="verify-card reveal">
+      <h3>Clinics Visited</h3>
+      <p>We visit clinics before recommending them and only partner with those that meet international hygiene and safety standards.</p>
+    </div>
+    <div class="verify-card reveal">
+      <h3>Transparent Pricing</h3>
+      <p>Every clinic we recommend provides a detailed, written treatment plan with costs before you book travel — no surprises on arrival.</p>
+    </div>
+  </div>
+  <p class="verify-note reveal">Wondering about safety? Read our honest guide: <a href="/is-dental-tourism-india-safe">Is Dental Tourism in India Safe?</a></p>
 </div>
 </section>
 
@@ -366,21 +471,58 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
         <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required></div>
       </div>
       <div class="form-row">
+        <div class="form-group"><label>Phone / WhatsApp (optional)</label><input type="tel" name="phone" placeholder="+1 555 123 4567" autocomplete="tel"></div>
         <div class="form-group"><label>Country</label>
-          <select name="country"><option value="">Select your country</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Other</option></select>
-        </div>
-        <div class="form-group"><label>Treatment</label>
-          <select name="treatment"><option value="">What do you need?</option><option>Dental Implants</option><option>Porcelain Veneers</option><option>Root Canal / Crown</option><option>Full Mouth Rehab</option><option>Smile Design</option><option>All-on-4 Implants</option><option>Teeth Whitening</option><option>Not Sure</option></select>
+          <select name="country" required><option value="">Select your country</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Other</option></select>
         </div>
       </div>
+      <div class="form-group"><label>Treatment</label>
+        <select name="treatment" required><option value="">What do you need?</option><option>Dental Implants</option><option>Porcelain Veneers</option><option>Root Canal / Crown</option><option>Full Mouth Rehab</option><option>Smile Design</option><option>All-on-4 Implants</option><option>Teeth Whitening</option><option>Not Sure</option></select>
+      </div>
       <div class="form-group"><label>Tell us more (optional)</label><textarea name="message" rows="3" placeholder="Any details about your dental needs, timeline, or questions..."></textarea></div>
+      <label class="form-consent"><input type="checkbox" name="consent" required><span>I agree to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> and consent to being contacted about my enquiry.</span></label>
       <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Send My Free Quote Request</button>
+      <div class="form-error" id="formError" role="alert"></div>
     </form>
     <div class="form-success" id="formSuccess">
       <h3>Thank You!</h3>
       <p style="color:var(--gray-400)">Our AI concierge will review your details and get back to you shortly. You can also chat with us instantly on Telegram.</p>
       <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank" style="margin-top:16px">Chat Now on Telegram</a>
     </div>
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+<div class="container">
+  <span class="section-label reveal">Good to Know</span>
+  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Common <span class="accent">Questions</span></h2>
+  <div class="faq-list">
+    <details class="faq-item reveal">
+      <summary>How much can I save on dental treatment in India?</summary>
+      <p>Dental treatment in India typically costs 70–90% less than in the US, UK, or Australia. For example, a single dental implant costs $300 - $800 in India versus $3,000 - $6,000 in the US. Even after adding flights and accommodation, most patients save thousands of dollars.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>Is dental tourism in India safe?</summary>
+      <p>Yes — at the right clinic. Indian dentists complete a 5-year BDS degree (specialists add a 3-year MDS) and must be registered with the Dental Council of India. Look for NABH- or JCI-accredited clinics with modern sterilization standards. Our <a href="/is-dental-tourism-india-safe">safety guide</a> has a full 10-point checklist.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>How long do I need to stay in India?</summary>
+      <p>Most treatment plans fit a 7-day trip: examination and digital imaging in the first days, treatment appointments interspersed with rest days, and final fittings and a review before you fly home. Your exact schedule depends on your treatment plan, so build in 1–2 buffer days. See our <a href="/dental-tourism-india-guide">complete tourism guide</a> for a day-by-day breakdown.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>How does the process work?</summary>
+      <p>Tell us your dental needs and share any existing X-rays or dental records. You'll receive a preliminary treatment plan with pricing within 24 hours, then compare quotes from 2–3 verified clinics before confirming your plan and booking travel.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>What does a quote or consultation cost?</summary>
+      <p>Nothing — the quote is completely free and comes with no obligation. Tell us what you need and we'll send a personalized treatment plan with pricing.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>Do I need a special visa for dental treatment in India?</summary>
+      <p>India offers an e-Medical Visa for patients, and an e-Tourist Visa also works for dental trips. Both are applied for online and typically processed in 2–3 business days. The e-Medical Visa lets you bring one companion.</p>
+    </details>
   </div>
 </div>
 </section>
@@ -410,11 +552,12 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     </div>
     <div class="footer-col"><h4>Treatments</h4><ul><li><a href="#treatments">Dental Implants</a></li><li><a href="#treatments">Porcelain Veneers</a></li><li><a href="#treatments">Smile Design</a></li><li><a href="#treatments">Full Mouth Rehab</a></li></ul></div>
     <div class="footer-col"><h4>Destinations</h4><ul><li><a href="#destinations">Hyderabad</a></li><li><a href="#destinations">Vijayawada</a></li><li><a href="#destinations">Guntur</a></li></ul></div>
+    <div class="footer-col"><h4>Guides</h4><ul><li><a href="/blog">All Guides</a></li><li><a href="/dental-implants-india-cost">Implant Costs</a></li><li><a href="/dental-tourism-india-guide">Tourism Guide</a></li><li><a href="/is-dental-tourism-india-safe">Is It Safe?</a></li><li><a href="/all-on-4-india">All-on-4</a></li><li><a href="/veneers-india-cost">Veneers Cost</a></li></ul></div>
     <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://t.me/DentalJourneyIndia_bot" target="_blank">Telegram Bot</a></li><li><a href="#contact">Get a Quote</a></li><li><a href="mailto:hello@dentaljourneyindia.org">Email Us</a></li></ul></div>
     <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/cookie-policy">Cookie Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/medical-disclaimer">Medical Disclaimer</a></li><li><a href="#" data-consent-settings>Cookie Settings</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>2026 DentalJourneyIndia. All rights reserved.</span>
+    <span>© 2026 DentalJourneyIndia. All rights reserved.</span>
     <span>Powered by AI</span>
   </div>
 </div>
@@ -426,6 +569,26 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 const nav=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
 
+// Mobile nav toggle
+const navToggle=document.getElementById('navToggle');
+const navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>{
+  const open=navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded',String(open));
+  navToggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded','false');
+  navToggle.setAttribute('aria-label','Open menu');
+}));
+
+// Telegram CTA click tracking (delegated, covers all t.me links on the page)
+document.addEventListener('click',function(e){
+  const a=e.target.closest&&e.target.closest('a[href*="t.me/DentalJourneyIndia_bot"]');
+  if(a&&typeof gtag==='function')gtag('event','telegram_click',{page_location:location.pathname});
+});
+
 // Reveal on scroll
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
@@ -434,29 +597,48 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 // Lead form submission
 const API_URL = 'https://dentaljourneyindia.org/api';
+const BTN_LABEL = 'Send My Free Quote Request';
+const ERROR_HTML = 'Something went wrong — please retry, or <a href="https://t.me/DentalJourneyIndia_bot" target="_blank" rel="noopener">chat with us on Telegram</a>.';
 document.getElementById('leadForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('button[type="submit"]');
+  const errBox = document.getElementById('formError');
+  errBox.style.display = 'none';
+  const data = {
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    phone: form.phone.value.trim(),
+    country: form.country.value,
+    treatment: form.treatment.value,
+    message: form.message.value.trim(),
+    source: 'website_form'
+  };
+  if (!data.name || !data.email) {
+    errBox.textContent = 'Please enter your name and email address.';
+    errBox.style.display = 'block';
+    return;
+  }
   btn.textContent = 'Sending...';
   btn.disabled = true;
   try {
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      country: form.country.value,
-      treatment: form.treatment.value,
-      message: form.message.value,
-      source: 'website_form'
-    };
-    await fetch(API_URL + '/leads', {
+    const res = await fetch(API_URL + '/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-  } catch(err) { console.error('Form error:', err); }
-  form.style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', { method: 'website_form' });
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  } catch(err) {
+    console.error('Form error:', err);
+    if (typeof gtag === 'function') gtag('event', 'form_error');
+    errBox.innerHTML = ERROR_HTML;
+    errBox.style.display = 'block';
+    btn.textContent = BTN_LABEL;
+    btn.disabled = false;
+  }
 });
 </script>
 
