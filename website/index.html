@@ -168,8 +168,32 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 .footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600)}
 @media(max-width:480px){.footer-bottom{flex-direction:column;gap:8px}}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+/* MOTION — hero entrance, staggered reveals, hover polish */
+@keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:0;animation:riseIn .7s cubic-bezier(.22,1,.36,1) forwards}
+.hero .section-label{animation-delay:.1s}
+.hero h1{animation-delay:.22s}
+.hero p{animation-delay:.34s}
+.hero-btns{animation-delay:.46s}
+.hero-stats{animation-delay:.6s}
+.treatment-grid .reveal:nth-child(2),.dest-grid .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.08s}
+.treatment-grid .reveal:nth-child(3),.dest-grid .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.16s}
+.treatment-grid .reveal:nth-child(4),.steps .reveal:nth-child(4){transition-delay:.24s}
+.treatment-grid .reveal:nth-child(5){transition-delay:.32s}
+.treatment-grid .reveal:nth-child(6){transition-delay:.4s}
+.treatment-card,.dest-card{transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.treatment-card:hover{box-shadow:0 12px 32px rgba(46,196,182,0.12)}
+.dest-card:hover{box-shadow:0 12px 32px rgba(201,168,76,0.10)}
+.step-num{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.step:hover .step-num{transform:scale(1.12)}
+.faq-item[open] p{animation:riseIn .35s cubic-bezier(.22,1,.36,1) both}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .reveal,.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:1;transform:none;animation:none}
+}
 </style>
 <script type="application/ld+json">
 {
