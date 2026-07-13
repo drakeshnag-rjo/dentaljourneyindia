@@ -5,6 +5,7 @@
  * sends the appropriate drip email (Day 1, 3, or 7), and logs to CRM.
  */
 const crm = require('../crm');
+const state = require('../state');
 const { sendEmail } = require('../email');
 const templates = require('../templates/lead-followup');
 
@@ -46,8 +47,14 @@ async function runLeadFollowUps() {
       html: email.html,
     });
 
+    if (result.suppressed) {
+      skipped++;
+      continue; // Unsubscribed — never retry
+    }
+
     if (result.success) {
       sent++;
+      state.recordFollowUpSent(lead.id, stage);
 
       // Log to CRM as a note
       const marker = `[agent:followup:${stage}]`;

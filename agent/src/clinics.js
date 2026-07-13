@@ -281,13 +281,27 @@ function getNextOutreachStep(clinic) {
 }
 
 /**
- * Update clinic outreach status (in-memory — persists via file rewrite in production)
+ * Update clinic outreach status — persisted to data/state.json so the
+ * drip sequence survives restarts (previously in-memory only, which
+ * reset every clinic to day 1 on each PM2 restart).
  */
+const state = require('./state');
+
+// Hydrate statuses from persistent state at load time
+for (const c of clinics) {
+  const saved = state.getClinicState(c.id);
+  if (saved) {
+    c.outreachStatus = saved.status;
+    c.lastOutreachDate = saved.lastOutreachDate;
+  }
+}
+
 function updateClinicStatus(clinicId, status) {
   const clinic = clinics.find(c => c.id === clinicId);
   if (clinic) {
     clinic.outreachStatus = status;
     clinic.lastOutreachDate = new Date().toISOString();
+    state.setClinicState(clinicId, status, clinic.lastOutreachDate);
   }
 }
 
