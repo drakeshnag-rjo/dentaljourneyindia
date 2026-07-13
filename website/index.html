@@ -476,6 +476,7 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     <h2>Get a Free <span class="accent">Quote</span></h2>
     <p>Tell us about your dental needs and we'll send you a personalized treatment plan with pricing.</p>
     <form id="leadForm">
+      <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
       <div class="form-row">
         <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="John Smith" required></div>
         <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required></div>
@@ -562,7 +563,7 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
     </div>
     <div class="footer-col"><h4>Treatments</h4><ul><li><a href="#treatments">Dental Implants</a></li><li><a href="#treatments">Porcelain Veneers</a></li><li><a href="#treatments">Smile Design</a></li><li><a href="#treatments">Full Mouth Rehab</a></li></ul></div>
     <div class="footer-col"><h4>Destinations</h4><ul><li><a href="#destinations">Hyderabad</a></li><li><a href="#destinations">Vijayawada</a></li><li><a href="#destinations">Guntur</a></li><li><a href="/india-tourism-dental-trip">Tourism Guide</a></li></ul></div>
-    <div class="footer-col"><h4>Guides</h4><ul><li><a href="/blog">All Guides</a></li><li><a href="/dental-implants-india-cost">Implant Costs</a></li><li><a href="/dental-tourism-india-guide">Tourism Guide</a></li><li><a href="/is-dental-tourism-india-safe">Is It Safe?</a></li><li><a href="/all-on-4-india">All-on-4</a></li><li><a href="/veneers-india-cost">Veneers Cost</a></li></ul></div>
+    <div class="footer-col"><h4>Guides</h4><ul><li><a href="/blog">All Guides</a></li><li><a href="/dental-implants-india-cost">Implant Costs</a></li><li><a href="/dental-tourism-india-guide">Tourism Guide</a></li><li><a href="/nri-dental-treatment-india">For NRIs</a></li><li><a href="/is-dental-tourism-india-safe">Is It Safe?</a></li><li><a href="/all-on-4-india">All-on-4</a></li><li><a href="/veneers-india-cost">Veneers Cost</a></li></ul></div>
     <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://t.me/DentalJourneyIndia_bot" target="_blank">Telegram Bot</a></li><li><a href="#contact">Get a Quote</a></li><li><a href="mailto:hello@dentaljourneyindia.org">Email Us</a></li></ul></div>
     <div class="footer-col"><h4>Legal</h4><ul><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/cookie-policy">Cookie Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/medical-disclaimer">Medical Disclaimer</a></li><li><a href="#" data-consent-settings>Cookie Settings</a></li></ul></div>
   </div>
@@ -622,6 +623,7 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     country: form.country.value,
     treatment: form.treatment.value,
     message: form.message.value.trim(),
+    company: form.company.value,
     source: 'website_form'
   };
   if (!data.name || !data.email) {

@@ -116,7 +116,11 @@ async function processLeadData(telegramId, leadData, crmPersonId) {
 
 bot.start(async (ctx) => {
   const tid = String(ctx.from.id), fn = ctx.from.first_name || '', ln = ctx.from.last_name || '', un = ctx.from.username || '';
-  const person = await crm.getOrCreatePerson(tid, fn, ln, un);
+  // Reuse the CRM person we already created for this Telegram user — the
+  // in-memory CRM cache is empty after a restart, so without this check
+  // every returning user's /start created a duplicate CRM person.
+  const existing = db.prepare('SELECT crm_person_id FROM conversations WHERE telegram_id = ?').get(tid);
+  const person = existing?.crm_person_id ? { id: existing.crm_person_id } : await crm.getOrCreatePerson(tid, fn, ln, un);
   db.prepare('INSERT OR REPLACE INTO conversations (telegram_id, first_name, last_name, username, crm_person_id, messages, messages_count) VALUES (?, ?, ?, ?, ?, \'[]\', 0)')
     .run(tid, fn, ln, un, person?.id || null);
   await sendResponse(ctx, `👋 Welcome${fn ? ` ${fn}` : ''}! I'm your *AI Dental Concierge*.\n\nI help international patients get *premium dental care in India* at a fraction of the cost — and plan an amazing trip around it.\n\n🇮🇳 Save up to *70-90%* on dental treatments\n🏥 *Verified clinics* in Hyderabad, Vijayawada & Guntur\n✈️ *Tourism itineraries* built around your treatment\n🤖 *24/7 AI support* — I'm always here\n\nHow can I help you today?`,

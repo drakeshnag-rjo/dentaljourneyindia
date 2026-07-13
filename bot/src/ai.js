@@ -8,9 +8,10 @@ async function ollamaChatWithModel(model, systemPrompt, messages, maxTokens) {
     var res = await fetch(OLLAMA_URL + '/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: model, messages: ollamaMessages, stream: false, options: { num_predict: maxTokens, temperature: 0.7, top_p: 0.9 } })
+      body: JSON.stringify({ model: model, messages: ollamaMessages, stream: false, keep_alive: '24h', options: { num_predict: maxTokens, temperature: 0.7, top_p: 0.9 } })
     });
     if (!res.ok) { console.error('[AI] Ollama error (' + res.status + '):', await res.text()); return null; }
+    var data = await res.json();
     var content = data.message && data.message.content ? data.message.content : null;
     if (content) { content = content.replace(/<think>[\s\S]*?<\/think>/g, '').trim(); } return content;
   } catch (err) {

@@ -32,13 +32,22 @@ async function getAllPeople(forceRefresh = false) {
   }
 
   try {
-    const res = await axios.get(`${BASE_URL}/rest/people?limit=200`, { headers: headers() });
-    // /rest/ returns { data: [...] } or just [...]
-    const records = res.data?.data?.people || res.data?.data || [];
-    personCache = records;
+    // Cursor pagination: Twenty returns { data: { people }, pageInfo: { endCursor, hasNextPage } }
+    const all = [];
+    let cursor = null;
+    for (let page = 0; page < 50; page++) {
+      const url = `${BASE_URL}/rest/people?limit=200${cursor ? `&starting_after=${encodeURIComponent(cursor)}` : ''}`;
+      const res = await axios.get(url, { headers: headers() });
+      const records = res.data?.data?.people || res.data?.data || [];
+      all.push(...records);
+      const pageInfo = res.data?.pageInfo;
+      if (!pageInfo?.hasNextPage || !pageInfo?.endCursor || records.length === 0) break;
+      cursor = pageInfo.endCursor;
+    }
+    personCache = all;
     lastCacheTime = Date.now();
-    console.log(`[CRM] Fetched ${records.length} people`);
-    return records;
+    console.log(`[CRM] Fetched ${all.length} people`);
+    return all;
   } catch (err) {
     console.error('[CRM] Failed to fetch people:', err.message);
     return personCache; // Return stale cache on error
@@ -110,9 +119,15 @@ async function getNotesForPerson(personId) {
 }
 
 /**
- * Check if a specific follow-up has already been sent
+ * Check if a specific follow-up has already been sent.
+ * Primary source of truth: local persistent state (survives restarts and
+ * doesn't depend on CRM note pagination). CRM notes remain as a backup
+ * check for sends that predate the state file.
  */
+const state = require('./state');
+
 async function wasFollowUpSent(personId, stage) {
+  if (state.wasFollowUpSent(personId, stage)) return true;
   const notes = await getNotesForPerson(personId);
   const marker = `[agent:followup:${stage}]`;
   return notes.some(n => {
