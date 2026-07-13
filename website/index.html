@@ -190,6 +190,24 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 .step-num{transition:transform .3s cubic-bezier(.22,1,.36,1)}
 .step:hover .step-num{transform:scale(1.12)}
 .faq-item[open] p{animation:riseIn .35s cubic-bezier(.22,1,.36,1) both}
+.faq-item summary:hover{color:var(--teal)}
+
+/* UI/UX POLISH — hero glow, micro-interactions, a11y focus, mobile CTA bar */
+.hero{position:relative}
+.hero::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:min(900px,90vw);height:70%;background:radial-gradient(ellipse at center,rgba(46,196,182,0.08),transparent 65%);pointer-events:none}
+.hero .container{position:relative}
+.btn:active{transform:translateY(0) scale(.97)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
+.treatment-card{position:relative;overflow:hidden}
+.treatment-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--teal-dark));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.treatment-card:hover::before{transform:scaleX(1)}
+.mobile-cta{display:none}
+@media(max-width:768px){
+  body{padding-bottom:74px}
+  .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(11,20,38,0.94);backdrop-filter:blur(12px);border-top:1px solid rgba(46,196,182,0.18);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .mobile-cta .btn{flex:1;justify-content:center;padding:12px 8px;font-size:14px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .reveal,.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:1;transform:none;animation:none}
@@ -598,11 +616,25 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 </div>
 </footer>
 
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+  <a href="https://t.me/DentalJourneyIndia_bot" class="btn btn-telegram" target="_blank">Telegram</a>
+</div>
+
 <!-- SCRIPTS -->
 <script>
 // Nav scroll effect
 const nav=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+// Hide the mobile CTA bar while the contact form is on screen (it would be redundant)
+const mobileCta=document.getElementById('mobileCta'),contactSec=document.getElementById('contact');
+if(mobileCta&&contactSec&&'IntersectionObserver' in window){
+  new IntersectionObserver(entries=>{
+    entries.forEach(en=>{mobileCta.style.transform=en.isIntersecting?'translateY(110%)':''});
+  },{threshold:0.15}).observe(contactSec);
+}
 
 // Mobile nav toggle
 const navToggle=document.getElementById('navToggle');
