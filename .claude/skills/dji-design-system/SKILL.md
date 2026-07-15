@@ -10,25 +10,30 @@ Live domain: `https://dentaljourneyindia.org`. No build step, no frameworks, no 
 every page is fully self-contained (inline CSS + JS). Never introduce React, bundlers,
 or CDN dependencies; the architecture is deliberately zero-cost and zero-maintenance.
 
-## Brand tokens — "Midnight Aurora" (redesign, July 2026)
+## Brand tokens — "Clinic Fresh" light theme (redesign, July 2026)
 
 ```css
-/* dark (homepage) */
---ink:#0D0B1E   --ink-light:#161230  --ink-mid:#221A45
---mint:#3DE8C4  --mint-dark:#22C3A2  --violet:#A78BFA  --apricot:#FF8E6E
---white:#F7F5FF --gray-400:#948FB0   --gray-600:#635E80
-/* light (articles) */
---bg:#FAF9FE    --text:#1B1730  --text-s:#5C5876  --accent:#6D4AD8
---accent-dark:#4F35A8  --accent-light:#F0EBFF  --border:#E4E1F0
+/* homepage (light, hospital-clean) */
+--paper:#F7FBFA --card:#FFFFFF  --ink:#10322E  --line:#DCEAE6
+--teal:#0FA48A  --teal-dark:#0B8570  --teal-deep:#0E8A74  --sky:#3E97DB
+--apricot:#FF8E6E (--apricot-text:#C85A38 for text on light)
+--mint-tint:#E3F6F0  --sky-tint:#EAF4FD  --gray-500:#5F7A75  --gray-600:#54706B
+/* articles (light) */
+--bg:#F7FBFA  --text:#10322E  --text-s:#5F7A75  --accent:#0E8A74
+--accent-dark:#0B6E5D  --accent-light:#E3F6F0  --border:#DCEAE6
 --save:#0E8A70  --save-bg:#E2F8F1
 ```
 
 - Fonts: **Playfair Display** (display/headings) + **DM Sans** (body), Google Fonts with
   `preconnect` to `fonts.googleapis.com` and `fonts.gstatic.com` (crossorigin) before the stylesheet.
-- Homepage (`index.html`): dark ink theme, mint primary CTAs, violet secondary, apricot
-  tertiary. Gradient text accents use `linear-gradient(100deg,var(--mint),var(--violet))`.
-- Article/guide pages: light theme (copy conventions from `dental-tourism-india-guide.html`),
-  nav logo sits on a dark ink chip for legibility.
+- The WHOLE site is light ("hospital clean"): white cards on `--paper`, teal primary CTAs
+  (white text), sky-blue secondary accents, apricot warmth. Gradient text accents use
+  `linear-gradient(100deg,var(--teal),var(--sky))`.
+- The logo SVG has white text — it must ALWAYS sit on a deep-teal chip (`#0F2E29`),
+  both on the homepage nav and article navs.
+- Homepage destination cards carry layered 3D city scenes (`.dest-scene` with `.sl-sky`,
+  `.sl-back`, `.sl-front` inline-SVG silhouette layers at different `translateZ` depths;
+  parent chain must stay `overflow` unclipped or `preserve-3d` flattens).
 - Motion & depth ("3D/4D layer"): `riseIn` keyframes + `.reveal`/`.reveal-3d`
   IntersectionObserver pattern, spring-ish easing `cubic-bezier(.22,1,.36,1)`, staggered
   `transition-delay` on grids. Homepage adds: fixed aurora blob background (`.bg-scene`,

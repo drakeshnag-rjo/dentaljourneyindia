@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg:#FAF9FE; --text:#1B1730; --text-secondary:#5C5876; --accent:#6D4AD8; --accent-dark:#4F35A8; --border:#E4E1F0; --card-bg:#fff; }
+    :root { --bg:#F7FBFA; --text:#10322E; --text-secondary:#5F7A75; --accent:#0E8A74; --accent-dark:#0B6E5D; --border:#DCEAE6; --card-bg:#fff; }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; font-size:17px; }
     nav { background:#fff; border-bottom:1px solid var(--border); padding:16px 0; position:sticky; top:0; z-index:100; }
@@ -37,37 +37,37 @@
     .card { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:28px; transition:box-shadow 0.2s; }
     .card { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
     .card:hover { box-shadow:0 8px 28px rgba(0,0,0,0.10); transform: translateY(-3px); }
-    a:focus-visible { outline: 2px solid #3DE8C4; outline-offset: 3px; border-radius: 4px; }
+    a:focus-visible { outline: 2px solid #0FA48A; outline-offset: 3px; border-radius: 4px; }
     @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
     .card .tag { font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--accent); font-weight:700; margin-bottom:8px; }
     .card h2 { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:10px; line-height:1.3; }
     .card h2 a { color:var(--text); text-decoration:none; }
     .card h2 a:hover { color:var(--accent); }
     .card p { color:var(--text-secondary); font-size:15px; margin-bottom:12px; }
-    .card .meta { font-size:13px; color:#9B96B4; }
-    footer { background:#1B1730; color:#ABA7C2; padding:40px 0; text-align:center; font-size:14px; }
+    .card .meta { font-size:13px; color:#8CA39D; }
+    footer { background:#10322E; color:#9FB5AF; padding:40px 0; text-align:center; font-size:14px; }
     footer a { color:var(--accent); text-decoration:none; }
     nav a.logo { display:inline-flex; align-items:center; }
-    nav a.logo img { height:40px; width:auto; display:block; background:#0D0B1E; border-radius:8px; padding:4px 10px; }
+    nav a.logo img { height:40px; width:auto; display:block; background:#0F2E29; border-radius:8px; padding:4px 10px; }
     .cta-box { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:#fff; padding:40px 32px; border-radius:12px; text-align:center; margin:0 0 64px; }
     .cta-box h2 { color:#fff; font-family:'DM Serif Display',serif; font-size:26px; margin:0 0 12px; }
     .cta-box p { color:rgba(255,255,255,0.9); margin-bottom:20px; }
     .cta-box .btn { display:inline-block; background:#fff; color:var(--accent-dark); padding:14px 32px; border-radius:8px; text-decoration:none; font-weight:700; font-size:16px; margin:0 8px; }
-    .cta-box .btn:hover { background:#3DE8C4; color:#1B1730; }
+    .cta-box .btn:hover { background:#0FA48A; color:#10322E; }
     .cta-box .btn-o { background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.5); }
     @media(max-width:600px){ .cta-box .btn { display:block; margin:8px 0; } }
     @media(max-width:520px){ nav .c { padding:0 16px; } nav a.logo img { height:32px; padding:3px 8px; } nav .nl a { margin-left:12px; font-size:14px; } nav .nl a.hide-m { display:none; } nav .nl .cta { padding:7px 14px; } }
   
 /* === AURORA MOTION LAYER (shared redesign) === */
-.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#3DE8C4,#A78BFA,#FF8E6E);pointer-events:none}
-.aurora-veil{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;z-index:0;background:radial-gradient(56% 100% at 18% 0%,rgba(61,232,196,0.10),transparent 70%),radial-gradient(48% 90% at 84% 0%,rgba(167,139,250,0.13),transparent 70%)}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#0FA48A,#3E97DB,#FF8E6E);pointer-events:none}
+.aurora-veil{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;z-index:0;background:radial-gradient(56% 100% at 18% 0%,rgba(15,164,138,0.10),transparent 70%),radial-gradient(48% 90% at 84% 0%,rgba(62,151,219,0.13),transparent 70%)}
 body{position:relative;overflow-x:hidden}
 .reveal-lite{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal-lite.visible{opacity:1;transform:translateY(0)}
 nav .nl .cta{white-space:nowrap}
 @media(max-width:520px){nav a.logo img{height:22px!important}nav .nl a{margin-left:10px}nav .nl .cta{padding:6px 10px;font-size:12px}}
 .step-box,.related,.toc,.callout{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1)}
-.step-box:hover,.related:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(27,23,48,0.10)}
+.step-box:hover,.related:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(16,50,46,0.10)}
 table{transition:box-shadow .35s}
 @media(max-width:640px){article table,table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
 @media (prefers-reduced-motion:reduce){

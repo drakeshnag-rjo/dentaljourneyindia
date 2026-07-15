@@ -36,7 +36,7 @@
       left: 0;
       right: 0;
       z-index: 99999;
-      background: #1B1730;
+      background: #10322E;
       color: #e0e0e0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 14px;
@@ -55,7 +55,7 @@
       margin-bottom: 16px;
     }
     #dji-consent-banner .cb-text a {
-      color: #5EEDCF;
+      color: #35C4A4;
       text-decoration: underline;
     }
     #dji-consent-banner .cb-options {
@@ -72,14 +72,14 @@
     #dji-consent-banner .cb-option input[type="checkbox"] {
       width: 18px;
       height: 18px;
-      accent-color: #5EEDCF;
+      accent-color: #35C4A4;
     }
     #dji-consent-banner .cb-option label {
       cursor: pointer;
       font-size: 13px;
     }
     #dji-consent-banner .cb-option .required {
-      color: #8B86A6;
+      color: #7C948F;
       font-size: 11px;
     }
     #dji-consent-banner .cb-buttons {
@@ -97,26 +97,26 @@
       transition: background 0.2s;
     }
     #dji-consent-banner .cb-accept {
-      background: #5EEDCF;
-      color: #1B1730;
+      background: #35C4A4;
+      color: #10322E;
     }
-    #dji-consent-banner .cb-accept:hover { background: #2FD4B2; }
+    #dji-consent-banner .cb-accept:hover { background: #12A388; }
     #dji-consent-banner .cb-necessary {
       background: transparent;
       color: #e0e0e0;
-      border: 1px solid #5C5876;
+      border: 1px solid #5F7A75;
     }
-    #dji-consent-banner .cb-necessary:hover { border-color: #9B96B4; }
+    #dji-consent-banner .cb-necessary:hover { border-color: #8CA39D; }
     #dji-consent-banner .cb-save {
-      background: #363048;
+      background: #2C403C;
       color: #e0e0e0;
     }
-    #dji-consent-banner .cb-save:hover { background: #474156; }
+    #dji-consent-banner .cb-save:hover { background: #3F5450; }
 
     /* Privacy settings link (footer) */
     .dji-privacy-link {
       cursor: pointer;
-      color: #5EEDCF;
+      color: #35C4A4;
       text-decoration: underline;
       background: none;
       border: none;
