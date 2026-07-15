@@ -69,17 +69,17 @@
   </script>
   <style>
     :root {
-      --bg: #faf9f7;
-      --text: #1a1a1a;
-      --text-secondary: #555;
-      --accent: #0c7a8a;
-      --accent-light: #e6f4f6;
-      --accent-dark: #085a66;
-      --border: #e0ddd8;
+      --bg: #FAF9FE;
+      --text: #1B1730;
+      --text-secondary: #5C5876;
+      --accent: #6D4AD8;
+      --accent-light: #F0EBFF;
+      --accent-dark: #4F35A8;
+      --border: #E4E1F0;
       --card-bg: #fff;
-      --highlight: #f0c75e;
-      --save-green: #0a8754;
-      --save-green-bg: #e8f5ee;
+      --highlight: #3DE8C4;
+      --save-green: #0E8A70;
+      --save-green-bg: #E2F8F1;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -212,7 +212,7 @@
       font-size: 16px;
     }
     .price-table .us-price {
-      color: #999;
+      color: #9B96B4;
       text-decoration: line-through;
     }
     .price-table .save {
@@ -262,7 +262,7 @@
       font-size: 16px;
       margin: 0 8px;
     }
-    .cta-box .btn:hover { background: var(--highlight); color: #1a1a1a; }
+    .cta-box .btn:hover { background: var(--highlight); color: #1B1730; }
     .cta-box .btn-outline {
       background: transparent;
       color: #fff;
@@ -287,8 +287,8 @@
 
     /* Footer */
     footer {
-      background: #1a1a1a;
-      color: #aaa;
+      background: #1B1730;
+      color: #ABA7C2;
       padding: 40px 0;
       text-align: center;
       font-size: 14px;
@@ -317,7 +317,7 @@
       .cta-box .btn { display: block; margin: 8px 0; }
       nav .nav-links a { margin-left: 12px; font-size: 13px; }
     }
-    nav a.logo { display: inline-flex; align-items: center; background: #0B1426; border-radius: 8px; padding: 5px 10px; }
+    nav a.logo { display: inline-flex; align-items: center; background: #0D0B1E; border-radius: 8px; padding: 5px 10px; }
     nav a.logo img { height: 34px; width: auto; display: block; }
     article p a, article li a { color: var(--accent); font-weight: 500; }
     .related { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
@@ -331,7 +331,25 @@
       nav .nav-links .cta-btn { padding: 6px 12px; }
       nav .nav-links a.hide-m { display: none; }
     }
-  </style>
+  
+/* === AURORA MOTION LAYER (shared redesign) === */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#3DE8C4,#A78BFA,#FF8E6E);pointer-events:none}
+.aurora-veil{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;z-index:0;background:radial-gradient(56% 100% at 18% 0%,rgba(61,232,196,0.10),transparent 70%),radial-gradient(48% 90% at 84% 0%,rgba(167,139,250,0.13),transparent 70%)}
+body{position:relative;overflow-x:hidden}
+.reveal-lite{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-lite.visible{opacity:1;transform:translateY(0)}
+nav .nl .cta{white-space:nowrap}
+@media(max-width:520px){nav a.logo img{height:22px!important}nav .nl a{margin-left:10px}nav .nl .cta{padding:6px 10px;font-size:12px}}
+.step-box,.related,.toc,.callout{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1)}
+.step-box:hover,.related:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(27,23,48,0.10)}
+table{transition:box-shadow .35s}
+@media(max-width:640px){article table,table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+@media (prefers-reduced-motion:reduce){
+  .reveal-lite{opacity:1!important;transform:none!important;transition:none!important}
+  .scroll-progress{display:none}
+  .step-box,.related,.toc,.callout{transition:none}
+}
+</style>
 <!-- Google Analytics 4 (consent mode) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HT3RVLE6YS"></script>
 <script>
@@ -668,6 +686,32 @@ document.addEventListener('click', function(ev){
 });
 </script>
 <script src="/chat-widget.js" data-api="https://dentaljourneyindia.org"></script>
+<script>
+/* AURORA MOTION LAYER — progressive enhancement, no-JS safe */
+(function(){
+  var d=document,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var veil=d.createElement('div');veil.className='aurora-veil';veil.setAttribute('aria-hidden','true');
+  d.body.insertBefore(veil,d.body.firstChild);
+  if(reduce)return;
+  var bar=d.createElement('div');bar.className='scroll-progress';bar.setAttribute('aria-hidden','true');
+  d.body.appendChild(bar);
+  var ticking=false;
+  function upd(){var max=d.documentElement.scrollHeight-window.innerHeight;bar.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';ticking=false}
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true}},{passive:true});
+  upd();
+  if('IntersectionObserver' in window){
+    var els=d.querySelectorAll('article h2,article h3,.step-box,.toc,.callout,.related,.cta-box,article table');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}});
+    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    Array.prototype.forEach.call(els,function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight){return}
+      el.classList.add('reveal-lite');io.observe(el);
+    });
+  }
+})();
+</script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

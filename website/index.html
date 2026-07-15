@@ -29,27 +29,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--navy:#0B1426;--navy-light:#121E36;--navy-mid:#1A2A4A;--gold:#C9A84C;--teal:#2EC4B6;--teal-dark:#1A9E92;--coral:#E07A5F;--white:#F8F6F0;--gray-400:#8A8880;--gray-600:#5A5850;--font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif}
+:root{
+  --ink:#0D0B1E;--ink-light:#161230;--ink-mid:#221A45;
+  --mint:#3DE8C4;--mint-dark:#22C3A2;--violet:#A78BFA;--apricot:#FF8E6E;
+  --white:#F7F5FF;--gray-400:#948FB0;--gray-600:#635E80;
+  --font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1)
+}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--navy);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-family:var(--font-body);font-weight:600;font-size:15px;text-decoration:none;transition:all .4s;cursor:pointer;border:none}
-.btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:var(--navy);box-shadow:0 4px 24px rgba(46,196,182,0.3)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(46,196,182,0.45)}
-.btn-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,76,0.4)}
-.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+body{font-family:var(--font-body);background:var(--ink);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-family:var(--font-body);font-weight:600;font-size:15px;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s;cursor:pointer;border:none;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.35) 50%,transparent 60%);transform:translateX(-120%);transition:transform .7s var(--ease)}
+.btn:hover::after{transform:translateX(120%)}
+.btn-primary{background:linear-gradient(135deg,var(--mint),var(--mint-dark));color:var(--ink);box-shadow:0 4px 24px rgba(61,232,196,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(61,232,196,0.45)}
+.btn-outline{background:transparent;color:var(--violet);border:1.5px solid rgba(167,139,250,0.4)}
+.btn-outline:hover{border-color:var(--violet);background:rgba(167,139,250,0.08)}
 .btn-telegram{background:#2AABEE;color:#fff;box-shadow:0 4px 20px rgba(42,171,238,0.3)}
 .btn-telegram:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,171,238,0.4)}
-.section-label{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
-.accent{color:var(--teal)}
+.section-label{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:16px;display:inline-block}
+.accent{background:linear-gradient(100deg,var(--mint),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2.sec-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px)}
+
+/* SCROLL PROGRESS (4D — time made visible) */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--mint),var(--violet),var(--apricot));pointer-events:none}
+
+/* AURORA BACKGROUND — layered depth scene, drifts over time */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;will-change:transform;opacity:.55}
+.blob-mint{width:60vw;height:60vw;max-width:900px;max-height:900px;top:-25%;left:-12%;background:radial-gradient(circle at center,rgba(61,232,196,0.16),transparent 62%);animation:drift1 26s ease-in-out infinite alternate}
+.blob-violet{width:55vw;height:55vw;max-width:820px;max-height:820px;top:15%;right:-18%;background:radial-gradient(circle at center,rgba(167,139,250,0.15),transparent 62%);animation:drift2 32s ease-in-out infinite alternate}
+.blob-apricot{width:45vw;height:45vw;max-width:640px;max-height:640px;bottom:-20%;left:28%;background:radial-gradient(circle at center,rgba(255,142,110,0.10),transparent 62%);animation:drift3 38s ease-in-out infinite alternate}
+.bg-grid{position:absolute;inset:-2%;background-image:linear-gradient(rgba(167,139,250,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,0.045) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%)}
+@keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(8vw,6vh,0) scale(1.15)}}
+@keyframes drift2{from{transform:translate3d(0,0,0) scale(1.1)}to{transform:translate3d(-7vw,-5vh,0) scale(.95)}}
+@keyframes drift3{from{transform:translate3d(0,0,0) scale(.95)}to{transform:translate3d(6vw,-8vh,0) scale(1.12)}}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:all .3s}
-nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+nav.scrolled{background:rgba(13,11,30,0.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 0;box-shadow:0 4px 24px rgba(0,0,0,0.35);border-bottom:1px solid rgba(167,139,250,0.12)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .logo{text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo-text{font-family:var(--font-display);font-size:20px;color:var(--white);font-weight:600}
-.logo-text span{color:var(--teal)}
+.logo-text span{color:var(--mint)}
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{color:var(--white);text-decoration:none;font-size:14px;font-weight:500;opacity:0.8;transition:opacity .3s}
 .nav-links a:hover{opacity:1}
@@ -60,107 +83,133 @@ nav.scrolled{background:rgba(11,20,38,0.95);backdrop-filter:blur(12px);padding:1
 .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:768px){
   .nav-toggle{display:flex}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(11,20,38,0.98);backdrop-filter:blur(12px);border-bottom:1px solid rgba(46,196,182,0.15);padding:8px 24px 20px;box-shadow:0 16px 32px rgba(0,0,0,0.4)}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(13,11,30,0.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(61,232,196,0.15);padding:8px 24px 20px;box-shadow:0 16px 32px rgba(0,0,0,0.4)}
   .nav-links.open{display:flex}
   .nav-links a{padding:14px 0;font-size:15px;opacity:0.9;border-bottom:1px solid rgba(255,255,255,0.05)}
   .nav-links a.btn{margin-top:12px;justify-content:center;border-bottom:none;padding:14px 32px}
 }
 
-/* HERO */
-.hero{padding:140px 0 80px;text-align:center}
-.hero h1{font-family:var(--font-display);font-size:clamp(32px,5vw,56px);font-weight:600;line-height:1.15;margin-bottom:24px}
+/* HERO — 3D perspective stage with pointer parallax */
+.hero{padding:150px 0 90px;text-align:center;position:relative;perspective:1200px}
+.hero .container{transform-style:preserve-3d}
+.hero h1{font-family:var(--font-display);font-size:clamp(32px,5vw,58px);font-weight:600;line-height:1.15;margin-bottom:24px}
 .hero p{font-size:18px;color:var(--gray-400);max-width:640px;margin:0 auto 40px;line-height:1.7}
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;flex-wrap:wrap}
-.hero-stats .stat{text-align:center}
-.hero-stats .stat-num{font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--teal)}
+.hero-stats{display:flex;gap:20px;justify-content:center;margin-top:64px;flex-wrap:wrap}
+.hero-stats .stat{text-align:center;padding:20px 28px;border-radius:18px;background:rgba(22,18,48,0.55);border:1px solid rgba(167,139,250,0.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 32px rgba(0,0,0,0.25);transition:transform .4s var(--ease),border-color .4s}
+.hero-stats .stat:hover{transform:translateY(-6px) scale(1.03);border-color:rgba(61,232,196,0.35)}
+.hero-stats .stat-num{font-family:var(--font-display);font-size:34px;font-weight:700;background:linear-gradient(120deg,var(--mint),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-stats .stat-label{font-size:13px;color:var(--gray-400);margin-top:4px}
+/* floating depth ornaments (desktop only) */
+.hero-float{position:absolute;border-radius:16px;padding:10px 18px;font-size:13px;font-weight:600;background:rgba(22,18,48,0.7);border:1px solid rgba(61,232,196,0.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 16px 40px rgba(0,0,0,0.35);animation:floatY 6s ease-in-out infinite;pointer-events:none;display:none}
+.hero-float.f1{top:24%;left:6%;color:var(--mint);animation-delay:0s}
+.hero-float.f2{top:38%;right:5%;color:var(--violet);border-color:rgba(167,139,250,0.3);animation-delay:1.6s}
+.hero-float.f3{bottom:18%;left:11%;color:var(--apricot);border-color:rgba(255,142,110,0.3);animation-delay:3s}
+@keyframes floatY{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(1.5deg)}}
+@media(min-width:1100px){.hero-float{display:block}}
+.parallax-layer{will-change:transform;transition:transform .25s ease-out}
+
+/* SECTION SHELLS */
+section{position:relative;z-index:1}
+.treatments,.destinations,.how-it-works,.verify,.contact,.faq{padding:84px 0}
+
+/* 3D TILT CARDS (shared) */
+.tilt{transform-style:preserve-3d;will-change:transform}
+.tilt.tilting{transition:transform .09s linear,border-color .35s,box-shadow .35s}
+.tilt .tilt-glare{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,0.08),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none}
+.tilt:hover .tilt-glare{opacity:1}
+.tilt-inner{transform:translateZ(24px)}
 
 /* TREATMENTS */
-.treatments{padding:80px 0}
-.treatment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
-.treatment-card{background:var(--navy-light);border:1px solid rgba(46,196,182,0.1);border-radius:16px;padding:32px;transition:transform .3s,border-color .3s}
-.treatment-card:hover{transform:translateY(-4px);border-color:rgba(46,196,182,0.3)}
+.treatment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px;perspective:1400px}
+.treatment-card{background:linear-gradient(160deg,rgba(22,18,48,0.9),rgba(34,26,69,0.65));border:1px solid rgba(61,232,196,0.12);border-radius:18px;padding:32px;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.treatment-card:hover{border-color:rgba(61,232,196,0.35);box-shadow:0 24px 48px rgba(0,0,0,0.35),0 0 40px rgba(61,232,196,0.07)}
 .treatment-card h3{font-family:var(--font-display);font-size:20px;margin-bottom:8px}
-.treatment-card .price-row{display:flex;justify-content:space-between;margin:16px 0 8px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.05)}
-.treatment-card .india-price{color:var(--teal);font-weight:700;font-size:18px}
+.treatment-card .price-row{display:flex;justify-content:space-between;margin:16px 0 8px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.treatment-card .india-price{color:var(--mint);font-weight:700;font-size:18px}
 .treatment-card .us-price{color:var(--gray-400);text-decoration:line-through;font-size:14px}
-.treatment-card .savings{background:rgba(46,196,182,0.1);color:var(--teal);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;margin-top:8px}
+.treatment-card .savings{background:rgba(61,232,196,0.1);color:var(--mint);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;margin-top:8px}
+.treatment-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--mint),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.treatment-card:hover::before{transform:scaleX(1)}
 
 /* DESTINATIONS */
-.destinations{padding:80px 0}
-.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px}
-.dest-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:32px;transition:transform .3s}
-.dest-card:hover{transform:translateY(-4px)}
-.dest-card h3{font-family:var(--font-display);font-size:22px;margin-bottom:8px;color:var(--gold)}
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px;perspective:1400px}
+.dest-card{background:linear-gradient(160deg,rgba(22,18,48,0.9),rgba(34,26,69,0.6));border:1px solid rgba(167,139,250,0.16);border-radius:18px;padding:32px;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.dest-card:hover{border-color:rgba(167,139,250,0.4);box-shadow:0 24px 48px rgba(0,0,0,0.35),0 0 40px rgba(167,139,250,0.08)}
+.dest-card h3{font-family:var(--font-display);font-size:22px;margin-bottom:8px;color:var(--violet)}
 .dest-card p{color:var(--gray-400);line-height:1.6;font-size:14px}
 .dest-card .attractions{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.dest-card .tag{background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px}
+.dest-card .tag{background:rgba(167,139,250,0.1);color:var(--violet);padding:4px 12px;border-radius:20px;font-size:12px}
+.trip-extend{margin-top:24px;border:1px dashed rgba(167,139,250,0.3);border-radius:16px;padding:20px 24px;background:rgba(22,18,48,0.4)}
+.trip-extend .tag{background:rgba(255,142,110,0.1);color:var(--apricot);padding:4px 12px;border-radius:20px;font-size:12px}
 
 /* HOW IT WORKS */
-.how-it-works{padding:80px 0}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:40px}
-.step{text-align:center;padding:24px}
-.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:var(--navy);font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:40px;perspective:1200px}
+.step{text-align:center;padding:24px;position:relative}
+.step-num{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--mint),var(--mint-dark));color:var(--ink);font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 10px 24px rgba(61,232,196,0.25),inset 0 -3px 0 rgba(0,0,0,0.15);transition:transform .35s var(--ease),box-shadow .35s}
+.step:hover .step-num{transform:translateY(-4px) rotateX(14deg) scale(1.08);box-shadow:0 18px 36px rgba(61,232,196,0.35),inset 0 -3px 0 rgba(0,0,0,0.15)}
 .step h3{font-size:16px;margin-bottom:8px}
 .step p{font-size:13px;color:var(--gray-400);line-height:1.6}
 
-/* CONTACT FORM */
-.contact{padding:80px 0}
-.contact-card{background:var(--navy-light);border:1px solid rgba(46,196,182,0.15);border-radius:20px;padding:48px;max-width:600px;margin:0 auto}
+/* HOW WE VERIFY */
+.verify-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px;perspective:1400px}
+.verify-card{background:linear-gradient(160deg,rgba(22,18,48,0.9),rgba(34,26,69,0.55));border:1px solid rgba(167,139,250,0.16);border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.verify-card:hover{border-color:rgba(167,139,250,0.4);box-shadow:0 20px 44px rgba(0,0,0,0.35)}
+.verify-card h3{font-family:var(--font-display);font-size:17px;margin-bottom:10px;color:var(--violet)}
+.verify-card p{font-size:13px;color:var(--gray-400);line-height:1.7}
+.verify-note{margin-top:28px;font-size:14px;color:var(--gray-400)}
+.verify-note a{color:var(--mint)}
+
+/* CONTACT FORM — glass card with gradient ring */
+.contact-card{background:rgba(22,18,48,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:22px;padding:48px;max-width:600px;margin:0 auto;position:relative}
+.contact-card::before{content:'';position:absolute;inset:-1px;border-radius:23px;padding:1px;background:linear-gradient(140deg,rgba(61,232,196,0.5),rgba(167,139,250,0.35),rgba(255,142,110,0.25));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none}
 .contact-card h2{font-family:var(--font-display);font-size:28px;margin-bottom:8px}
 .contact-card p{color:var(--gray-400);margin-bottom:32px}
 .form-group{margin-bottom:16px}
 .form-group label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--gray-400)}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;background:var(--navy-mid);border:1px solid rgba(46,196,182,0.15);border-radius:10px;color:var(--white);font-size:14px;font-family:inherit;outline:none;transition:border-color .3s}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;background:var(--ink-mid);border:1px solid rgba(61,232,196,0.15);border-radius:10px;color:var(--white);font-size:14px;font-family:inherit;outline:none;transition:border-color .3s,box-shadow .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--mint);box-shadow:0 0 0 3px rgba(61,232,196,0.12)}
 .form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-600)}
 .form-group select{cursor:pointer}
-.form-group select option{background:var(--navy-mid);color:var(--white)}
+.form-group select option{background:var(--ink-mid);color:var(--white)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 .form-success{display:none;text-align:center;padding:32px}
-.form-success h3{color:var(--teal);font-size:22px;margin-bottom:8px}
+.form-success h3{color:var(--mint);font-size:22px;margin-bottom:8px}
 .form-consent{display:flex;align-items:flex-start;gap:10px;margin:16px 0 4px;font-size:13px;color:var(--gray-400);line-height:1.5;cursor:pointer}
-.form-consent input{width:16px;height:16px;margin-top:2px;accent-color:var(--teal);flex-shrink:0;cursor:pointer}
-.form-consent a{color:var(--teal)}
-.form-error{display:none;margin-top:14px;padding:12px 16px;background:rgba(224,122,95,0.12);border:1px solid rgba(224,122,95,0.4);border-radius:10px;color:var(--coral);font-size:14px;line-height:1.5}
-.form-error a{color:var(--teal)}
-
-/* HOW WE VERIFY */
-.verify{padding:80px 0}
-.verify-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
-.verify-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.15);border-radius:16px;padding:28px}
-.verify-card h3{font-family:var(--font-display);font-size:17px;margin-bottom:10px;color:var(--gold)}
-.verify-card p{font-size:13px;color:var(--gray-400);line-height:1.7}
-.verify-note{margin-top:28px;font-size:14px;color:var(--gray-400)}
-.verify-note a{color:var(--teal)}
+.form-consent input{width:16px;height:16px;margin-top:2px;accent-color:var(--mint);flex-shrink:0;cursor:pointer}
+.form-consent a{color:var(--mint)}
+.form-error{display:none;margin-top:14px;padding:12px 16px;background:rgba(255,142,110,0.12);border:1px solid rgba(255,142,110,0.4);border-radius:10px;color:var(--apricot);font-size:14px;line-height:1.5}
+.form-error a{color:var(--mint)}
 
 /* FAQ */
-.faq{padding:80px 0}
 .faq-list{max-width:800px;margin:40px auto 0}
-.faq-item{background:var(--navy-light);border:1px solid rgba(46,196,182,0.1);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-item{background:rgba(22,18,48,0.8);border:1px solid rgba(61,232,196,0.1);border-radius:14px;margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.faq-item[open]{border-color:rgba(61,232,196,0.3)}
 .faq-item summary{padding:20px 24px;cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:'+';color:var(--teal);font-size:22px;font-weight:400;flex-shrink:0;transition:transform .3s}
+.faq-item summary::after{content:'+';color:var(--mint);font-size:22px;font-weight:400;flex-shrink:0;transition:transform .3s}
 .faq-item[open] summary::after{transform:rotate(45deg)}
 .faq-item p{padding:0 24px 20px;color:var(--gray-400);font-size:14px;line-height:1.7}
-.faq-item p a{color:var(--teal)}
+.faq-item p a{color:var(--mint)}
 
-/* CTA */
-.cta{padding:80px 0;text-align:center}
-.cta-card{background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(46,196,182,0.2);border-radius:20px;padding:64px 48px}
+/* CTA — animated aurora border (4D) */
+.cta{padding:84px 0;text-align:center}
+.cta-card{background:linear-gradient(150deg,var(--ink-light),var(--ink-mid));border-radius:22px;padding:64px 48px;position:relative;overflow:hidden}
+.cta-card::before{content:'';position:absolute;inset:-1px;border-radius:23px;padding:1.5px;background:conic-gradient(from var(--cta-angle,0deg),var(--mint),var(--violet),var(--apricot),var(--mint));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:spinBorder 8s linear infinite;pointer-events:none}
+@property --cta-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes spinBorder{to{--cta-angle:360deg}}
 .cta-card h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);margin-bottom:16px}
 .cta-card p{color:var(--gray-400);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
 /* FOOTER */
-footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
+footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05);position:relative;z-index:1}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:32px}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 .footer-brand p{color:var(--gray-400);font-size:13px;margin-top:12px;line-height:1.6}
-.footer-col h4{font-size:13px;font-weight:600;margin-bottom:16px;color:var(--teal)}
+.footer-col h4{font-size:13px;font-weight:600;margin-bottom:16px;color:var(--mint)}
 .footer-col ul{list-style:none}
 .footer-col li{margin-bottom:10px}
 .footer-col a{color:var(--gray-400);text-decoration:none;font-size:13px;transition:color .3s}
@@ -168,49 +217,46 @@ footer{padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05)}
 .footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600)}
 @media(max-width:480px){.footer-bottom{flex-direction:column;gap:8px}}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+/* REVEALS — depth-staggered (rise + 3D unfold) */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-3d{opacity:0;transform:perspective(900px) rotateX(14deg) translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-3d.visible{opacity:1;transform:perspective(900px) rotateX(0) translateY(0)}
 
-/* MOTION — hero entrance, staggered reveals, hover polish */
+/* MOTION — hero entrance */
 @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:0;animation:riseIn .7s cubic-bezier(.22,1,.36,1) forwards}
+.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:0;animation:riseIn .7s var(--ease) forwards}
 .hero .section-label{animation-delay:.1s}
 .hero h1{animation-delay:.22s}
 .hero p{animation-delay:.34s}
 .hero-btns{animation-delay:.46s}
 .hero-stats{animation-delay:.6s}
-.treatment-grid .reveal:nth-child(2),.dest-grid .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.08s}
-.treatment-grid .reveal:nth-child(3),.dest-grid .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.16s}
-.treatment-grid .reveal:nth-child(4),.steps .reveal:nth-child(4){transition-delay:.24s}
-.treatment-grid .reveal:nth-child(5){transition-delay:.32s}
-.treatment-grid .reveal:nth-child(6){transition-delay:.4s}
-.treatment-card,.dest-card{transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
-.treatment-card:hover{box-shadow:0 12px 32px rgba(46,196,182,0.12)}
-.dest-card:hover{box-shadow:0 12px 32px rgba(201,168,76,0.10)}
-.step-num{transition:transform .3s cubic-bezier(.22,1,.36,1)}
-.step:hover .step-num{transform:scale(1.12)}
-.faq-item[open] p{animation:riseIn .35s cubic-bezier(.22,1,.36,1) both}
-.faq-item summary:hover{color:var(--teal)}
+.treatment-grid .reveal-3d:nth-child(2),.dest-grid .reveal-3d:nth-child(2),.steps .reveal-3d:nth-child(2),.verify-grid .reveal-3d:nth-child(2){transition-delay:.08s}
+.treatment-grid .reveal-3d:nth-child(3),.dest-grid .reveal-3d:nth-child(3),.steps .reveal-3d:nth-child(3),.verify-grid .reveal-3d:nth-child(3){transition-delay:.16s}
+.treatment-grid .reveal-3d:nth-child(4),.steps .reveal-3d:nth-child(4),.verify-grid .reveal-3d:nth-child(4){transition-delay:.24s}
+.treatment-grid .reveal-3d:nth-child(5){transition-delay:.32s}
+.treatment-grid .reveal-3d:nth-child(6){transition-delay:.4s}
+.faq-item[open] p{animation:riseIn .35s var(--ease) both}
+.faq-item summary:hover{color:var(--mint)}
 
-/* UI/UX POLISH — hero glow, micro-interactions, a11y focus, mobile CTA bar */
-.hero{position:relative}
-.hero::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:min(900px,90vw);height:70%;background:radial-gradient(ellipse at center,rgba(46,196,182,0.08),transparent 65%);pointer-events:none}
+/* A11Y + MOBILE */
 .hero .container{position:relative}
 .btn:active{transform:translateY(0) scale(.97)}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
 input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
-.treatment-card{position:relative;overflow:hidden}
-.treatment-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--teal-dark));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
-.treatment-card:hover::before{transform:scaleX(1)}
 .mobile-cta{display:none}
 @media(max-width:768px){
   body{padding-bottom:74px}
-  .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(11,20,38,0.94);backdrop-filter:blur(12px);border-top:1px solid rgba(46,196,182,0.18);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(13,11,30,0.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(61,232,196,0.18);transition:transform .35s var(--ease)}
   .mobile-cta .btn{flex:1;justify-content:center;padding:12px 8px;font-size:14px}
+  .blob{opacity:.35}
+  .hero{padding:130px 0 70px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  .reveal,.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:1;transform:none;animation:none}
+  .reveal,.reveal-3d,.hero .section-label,.hero h1,.hero p,.hero-btns,.hero-stats{opacity:1;transform:none;animation:none}
+  .blob,.cta-card::before,.hero-float{animation:none}
+  .parallax-layer{transition:none}
 }
 </style>
 <script type="application/ld+json">
@@ -337,6 +383,17 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 </head>
 <body>
 
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- AURORA DEPTH SCENE -->
+<div class="bg-scene" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="blob blob-mint" data-depth="18"></div>
+  <div class="blob blob-violet" data-depth="30"></div>
+  <div class="blob blob-apricot" data-depth="12"></div>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
 <div class="container nav-inner">
@@ -354,8 +411,11 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-<div class="container">
+<section class="hero" id="hero">
+<div class="hero-float f1" aria-hidden="true">Save up to 90%</div>
+<div class="hero-float f2" aria-hidden="true">Free quote in 24h</div>
+<div class="hero-float f3" aria-hidden="true">Dental + Travel, one plan</div>
+<div class="container parallax-layer" data-depth="8">
   <span class="section-label">AI-Powered Dental Tourism</span>
   <h1>Premium Dental Care in India.<br>Save up to <span class="accent">90%</span>.</h1>
   <p>Get world-class dental treatments at a fraction of the cost — accreditation-checked clinics, transparent written pricing, and a free personalized quote within 24 hours.</p>
@@ -376,43 +436,49 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <section class="treatments" id="treatments">
 <div class="container">
   <span class="section-label reveal">Compare & Save</span>
-  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Treatment <span class="accent">Pricing</span></h2>
+  <h2 class="sec-title reveal">Treatment <span class="accent">Pricing</span></h2>
   <div class="treatment-grid">
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>Dental Implant</h3>
       <p style="color:var(--gray-400);font-size:13px">Single tooth, titanium implant + crown</p>
       <div class="price-row"><span class="india-price">$300 - $800</span><span class="us-price">$3,000 - $6,000 US</span></div>
       <span class="savings">Save up to 90%</span>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>Porcelain Veneers</h3>
       <p style="color:var(--gray-400);font-size:13px">Per tooth, premium porcelain</p>
       <div class="price-row"><span class="india-price">$150 - $400</span><span class="us-price">$1,000 - $2,500 US</span></div>
       <span class="savings">Save up to 85%</span>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>Root Canal + Crown</h3>
       <p style="color:var(--gray-400);font-size:13px">Complete treatment with zirconia crown</p>
       <div class="price-row"><span class="india-price">$100 - $300</span><span class="us-price">$1,500 - $3,000 US</span></div>
       <span class="savings">Save up to 90%</span>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>Full Mouth Rehab</h3>
       <p style="color:var(--gray-400);font-size:13px">Complete restoration, all teeth</p>
       <div class="price-row"><span class="india-price">$3,000 - $8,000</span><span class="us-price">$25,000 - $50,000 US</span></div>
       <span class="savings">Save up to 90%</span>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>Smile Design (8 Veneers)</h3>
       <p style="color:var(--gray-400);font-size:13px">Complete smile makeover</p>
       <div class="price-row"><span class="india-price">$1,200 - $3,000</span><span class="us-price">$8,000 - $20,000 US</span></div>
       <span class="savings">Save up to 85%</span>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="treatment-card reveal">
+    <div class="treatment-card tilt reveal-3d">
       <h3>All-on-4 Implants</h3>
       <p style="color:var(--gray-400);font-size:13px">Full arch on 4 implants</p>
       <div class="price-row"><span class="india-price">$2,500 - $5,000</span><span class="us-price">$20,000 - $30,000 US</span></div>
       <span class="savings">Save up to 85%</span>
+      <div class="tilt-glare"></div>
     </div>
   </div>
 </div>
@@ -422,32 +488,35 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <section class="destinations" id="destinations">
 <div class="container">
   <span class="section-label reveal">Dental + Tourism</span>
-  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Our <span class="accent">Destinations</span></h2>
+  <h2 class="sec-title reveal">Our <span class="accent">Destinations</span></h2>
   <div class="dest-grid">
-    <div class="dest-card reveal">
+    <div class="dest-card tilt reveal-3d">
       <h3>Hyderabad</h3>
       <p>City of pearls — home to world-class dental clinics, rich Mughal heritage, and incredible biryani. Our top destination for premium dental care.</p>
       <div class="attractions"><span class="tag">Charminar</span><span class="tag">Golconda Fort</span><span class="tag">Ramoji Film City</span><span class="tag">Hussain Sagar</span></div>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="dest-card reveal">
+    <div class="dest-card tilt reveal-3d">
       <h3>Vijayawada</h3>
       <p>Gateway to Andhra Pradesh — excellent mid-range clinics along the scenic Krishna River. Best value for quality dental work.</p>
       <div class="attractions"><span class="tag">Kanaka Durga Temple</span><span class="tag">Undavalli Caves</span><span class="tag">Bhavani Island</span></div>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="dest-card reveal">
+    <div class="dest-card tilt reveal-3d">
       <h3>Guntur</h3>
       <p>Historic city near the ancient Buddhist site of Amaravati. Most affordable dental care with experienced specialists.</p>
       <div class="attractions"><span class="tag">Amaravati</span><span class="tag">Kondaveedu Fort</span><span class="tag">Nagarjuna Sagar</span></div>
+      <div class="tilt-glare"></div>
     </div>
   </div>
-  <div class="reveal" style="margin-top:24px;border:1px dashed rgba(201,168,76,0.25);border-radius:16px;padding:20px 24px">
-    <p style="color:var(--gray-400);font-size:13px;line-height:1.6"><strong style="color:var(--gold);font-weight:600">Extend Your Trip</strong> — your treatment always takes place in Hyderabad, Vijayawada, or Guntur, but many patients add optional sightseeing before or after their dental work:</p>
+  <div class="reveal trip-extend">
+    <p style="color:var(--gray-400);font-size:13px;line-height:1.6"><strong style="color:var(--apricot);font-weight:600">Extend Your Trip</strong> — your treatment always takes place in Hyderabad, Vijayawada, or Guntur, but many patients add optional sightseeing before or after their dental work:</p>
     <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-      <span style="background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px">Goa</span>
-      <span style="background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px">Kerala Backwaters</span>
-      <span style="background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px">Taj Mahal &amp; the Golden Triangle</span>
-      <span style="background:rgba(201,168,76,0.1);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px">Hampi</span>
-      <a href="/india-tourism-dental-trip" style="font-size:13px;color:var(--teal);text-decoration:none;margin-left:auto">See the full India tourism guide &rarr;</a>
+      <span class="tag">Goa</span>
+      <span class="tag">Kerala Backwaters</span>
+      <span class="tag">Taj Mahal &amp; the Golden Triangle</span>
+      <span class="tag">Hampi</span>
+      <a href="/india-tourism-dental-trip" style="font-size:13px;color:var(--mint);text-decoration:none;margin-left:auto">See the full India tourism guide &rarr;</a>
     </div>
   </div>
 </div>
@@ -457,24 +526,24 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <section class="how-it-works" id="how-it-works">
 <div class="container">
   <span class="section-label reveal">Simple Process</span>
-  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">How It <span class="accent">Works</span></h2>
+  <h2 class="sec-title reveal">How It <span class="accent">Works</span></h2>
   <div class="steps">
-    <div class="step reveal">
+    <div class="step reveal-3d">
       <div class="step-num">1</div>
       <h3>Tell Us Your Needs</h3>
       <p>Chat with our AI concierge about your dental needs, budget, and travel preferences.</p>
     </div>
-    <div class="step reveal">
+    <div class="step reveal-3d">
       <div class="step-num">2</div>
       <h3>Get Matched</h3>
       <p>We recommend verified clinics with transparent pricing and accreditation you can check.</p>
     </div>
-    <div class="step reveal">
+    <div class="step reveal-3d">
       <div class="step-num">3</div>
       <h3>Plan Your Trip</h3>
       <p>Our AI builds your complete itinerary — treatment schedule plus tourism experiences.</p>
     </div>
-    <div class="step reveal">
+    <div class="step reveal-3d">
       <div class="step-num">4</div>
       <h3>Smile & Explore</h3>
       <p>Get world-class dental care and enjoy an incredible Indian adventure.</p>
@@ -487,23 +556,27 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <section class="verify" id="verify">
 <div class="container">
   <span class="section-label reveal">Trust, Earned</span>
-  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">How We <span class="accent">Verify Clinics</span></h2>
+  <h2 class="sec-title reveal">How We <span class="accent">Verify Clinics</span></h2>
   <div class="verify-grid">
-    <div class="verify-card reveal">
+    <div class="verify-card tilt reveal-3d">
       <h3>Accreditation Checked</h3>
       <p>We look for NABH or JCI accreditation — audits covering sterilization protocols, infection control, equipment maintenance, and patient safety procedures.</p>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="verify-card reveal">
+    <div class="verify-card tilt reveal-3d">
       <h3>Credentials Verified</h3>
       <p>Dentists must be registered with the Dental Council of India. We check qualifications — a 5-year BDS degree, with specialists holding an additional 3-year MDS.</p>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="verify-card reveal">
+    <div class="verify-card tilt reveal-3d">
       <h3>Clinics Visited</h3>
       <p>We visit clinics before recommending them and only partner with those that meet international hygiene and safety standards.</p>
+      <div class="tilt-glare"></div>
     </div>
-    <div class="verify-card reveal">
+    <div class="verify-card tilt reveal-3d">
       <h3>Transparent Pricing</h3>
       <p>Every clinic we recommend provides a detailed, written treatment plan with costs before you book travel — no surprises on arrival.</p>
+      <div class="tilt-glare"></div>
     </div>
   </div>
   <p class="verify-note reveal">Wondering about safety? Read our honest guide: <a href="/is-dental-tourism-india-safe">Is Dental Tourism in India Safe?</a></p>
@@ -550,7 +623,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <section class="faq" id="faq">
 <div class="container">
   <span class="section-label reveal">Good to Know</span>
-  <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,40px)">Common <span class="accent">Questions</span></h2>
+  <h2 class="sec-title reveal">Common <span class="accent">Questions</span></h2>
   <div class="faq-list">
     <details class="faq-item reveal">
       <summary>How much can I save on dental treatment in India?</summary>
@@ -600,7 +673,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
 <div class="container">
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo-text" style="font-size:18px">Dental<span style="color:var(--teal)">Journey</span>India</span>
+      <span class="logo-text" style="font-size:18px">Dental<span style="color:var(--mint)">Journey</span>India</span>
       <p>Your AI-powered dental tourism concierge. Premium dental care in India, made simple.</p>
     </div>
     <div class="footer-col"><h4>Treatments</h4><ul><li><a href="#treatments">Dental Implants</a></li><li><a href="#treatments">Porcelain Veneers</a></li><li><a href="#treatments">Smile Design</a></li><li><a href="#treatments">Full Mouth Rehab</a></li></ul></div>
@@ -656,11 +729,73 @@ document.addEventListener('click',function(e){
   if(a&&typeof gtag==='function')gtag('event','telegram_click',{page_location:location.pathname});
 });
 
-// Reveal on scroll
+// Reveal on scroll (both flat and 3D variants)
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
 },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.reveal,.reveal-3d').forEach(el=>observer.observe(el));
+
+// === 3D / 4D LAYER — desktop fine pointers only, disabled for reduced motion ===
+const motionOK=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Scroll progress bar
+const progress=document.getElementById('scrollProgress');
+if(progress&&motionOK){
+  let ticking=false;
+  const update=()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;
+    progress.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';
+    ticking=false;
+  };
+  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});
+  update();
+}
+
+// Pointer parallax — hero content + aurora blobs drift subtly toward the cursor
+if(motionOK&&finePointer){
+  const layers=document.querySelectorAll('.parallax-layer,[data-depth]');
+  let px=0,py=0,raf=null;
+  const apply=()=>{
+    layers.forEach(el=>{
+      const d=parseFloat(el.dataset.depth||'8');
+      el.style.transform='translate3d('+(px*d)+'px,'+(py*d)+'px,0)';
+    });
+    raf=null;
+  };
+  document.addEventListener('mousemove',e=>{
+    px=(e.clientX/innerWidth-0.5)*2;
+    py=(e.clientY/innerHeight-0.5)*2;
+    if(!raf)raf=requestAnimationFrame(apply);
+  },{passive:true});
+}
+
+// 3D tilt cards with glare tracking
+if(motionOK&&finePointer){
+  document.querySelectorAll('.tilt').forEach(card=>{
+    let raf=null,rx=0,ry=0;
+    const render=()=>{
+      card.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateZ(6px)';
+      raf=null;
+    };
+    card.addEventListener('pointerenter',()=>card.classList.add('tilting'));
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      ry=(x-0.5)*10;
+      rx=(0.5-y)*8;
+      card.style.setProperty('--gx',(x*100)+'%');
+      card.style.setProperty('--gy',(y*100)+'%');
+      if(!raf)raf=requestAnimationFrame(render);
+    });
+    card.addEventListener('pointerleave',()=>{
+      if(raf)cancelAnimationFrame(raf);
+      raf=null;
+      card.classList.remove('tilting');
+      card.style.transform='';
+    });
+  });
+}
 
 // Lead form submission
 const API_URL = 'https://dentaljourneyindia.org/api';

@@ -27,7 +27,7 @@
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does payment work?","acceptedAnswer":{"@type":"Answer","text":"You pay the clinic directly — we never handle your money. Clinics accept cash, cards, and UPI, and you'll get a written treatment plan with itemized costs before anything begins, so there are no surprises at the front desk."}},{"@type":"Question","name":"What if I need follow-up care after I'm back home?","acceptedAnswer":{"@type":"Answer","text":"Before you leave, the clinic provides your complete records — X-rays, treatment notes, and details of any implants or materials used — so a dentist in your home country can pick up where they left off. Be aware that follow-up visits at home are with a local dentist at local prices; routine checks are usually inexpensive, but it's worth factoring in."}},{"@type":"Question","name":"Is the consultation free?","acceptedAnswer":{"@type":"Answer","text":"Our coordination service and the preliminary quote are completely free. Consultation fees at the clinic itself vary — some charge a small fee, some waive it if you proceed with treatment. Whatever applies to your case is confirmed in writing before you book, so you know the exact figure before you fly."}},{"@type":"Question","name":"How far in advance should I plan?","acceptedAnswer":{"@type":"Answer","text":"Ideally 3–4 weeks before you fly. That's enough time to share your X-rays or photos, get quotes from verified clinics, and lock in appointment dates that fit your trip. For implant work, start earlier if you can — the clinic may recommend a schedule that affects how you plan your stay."}},{"@type":"Question","name":"Can I get treated in my family's home town?","acceptedAnswer":{"@type":"Answer","text":"We work with verified clinics in exactly three cities: Hyderabad, Vijayawada, and Guntur. If your family lives elsewhere in Telangana or Andhra Pradesh, treatment still happens in one of these three cities — many patients plan appointments around a short stay or day trips to the nearest one."}}]}
   </script>
   <style>
-    :root{--bg:#faf9f7;--text:#1a1a1a;--text-s:#555;--accent:#0c7a8a;--accent-light:#e6f4f6;--accent-dark:#085a66;--border:#e0ddd8;--card:#fff;--save:#0a8754;--save-bg:#e8f5ee}
+    :root{--bg:#FAF9FE;--text:#1B1730;--text-s:#5C5876;--accent:#6D4AD8;--accent-light:#F0EBFF;--accent-dark:#4F35A8;--border:#E4E1F0;--card:#fff;--save:#0E8A70;--save-bg:#E2F8F1}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:17px}
     nav{background:#fff;border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;z-index:100}
@@ -67,15 +67,33 @@
     .cta-box h2{color:#fff;font-family:'DM Serif Display',serif;margin:0 0 12px}
     .cta-box p{color:rgba(255,255,255,0.9);margin-bottom:20px}
     .cta-box .btn{display:inline-block;background:#fff;color:var(--accent-dark);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;margin:0 8px}
-    .cta-box .btn:hover{background:#f0c75e;color:#1a1a1a}
+    .cta-box .btn:hover{background:#3DE8C4;color:#1B1730}
     .cta-box .btn-o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5)}
-    footer{background:#1a1a1a;color:#aaa;padding:40px 0;text-align:center;font-size:14px}
+    footer{background:#1B1730;color:#ABA7C2;padding:40px 0;text-align:center;font-size:14px}
     footer a{color:var(--accent);text-decoration:none}
     footer .fl a{margin:0 16px}
     @media(max-width:600px){.step-box{padding-left:24px;padding-top:60px}.step-box .num{top:16px;left:20px}.cta-box .btn{display:block;margin:8px 0}}
-    nav a.logo{display:inline-flex;align-items:center;background:#0B1426;border-radius:8px;padding:5px 10px}nav a.logo img{height:34px;width:auto;display:block}article p a,article li a{color:var(--accent);font-weight:500}.related{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.related h2{margin:0 0 12px;font-size:22px}.related ul{margin:0 0 0 20px}.related a{color:var(--accent);text-decoration:none;font-weight:700}.related a:hover{text-decoration:underline}
+    nav a.logo{display:inline-flex;align-items:center;background:#0D0B1E;border-radius:8px;padding:5px 10px}nav a.logo img{height:34px;width:auto;display:block}article p a,article li a{color:var(--accent);font-weight:500}.related{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0}.related h2{margin:0 0 12px;font-size:22px}.related ul{margin:0 0 0 20px}.related a{color:var(--accent);text-decoration:none;font-weight:700}.related a:hover{text-decoration:underline}
     @media(max-width:520px){nav .c{padding:0 16px}nav a.logo img{height:26px}nav .nl a{margin-left:12px;font-size:13px}nav .nl .cta{padding:6px 12px}nav .nl a.hide-m{display:none}}
-  </style>
+  
+/* === AURORA MOTION LAYER (shared redesign) === */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#3DE8C4,#A78BFA,#FF8E6E);pointer-events:none}
+.aurora-veil{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;z-index:0;background:radial-gradient(56% 100% at 18% 0%,rgba(61,232,196,0.10),transparent 70%),radial-gradient(48% 90% at 84% 0%,rgba(167,139,250,0.13),transparent 70%)}
+body{position:relative;overflow-x:hidden}
+.reveal-lite{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-lite.visible{opacity:1;transform:translateY(0)}
+nav .nl .cta{white-space:nowrap}
+@media(max-width:520px){nav a.logo img{height:22px!important}nav .nl a{margin-left:10px}nav .nl .cta{padding:6px 10px;font-size:12px}}
+.step-box,.related,.toc,.callout{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1)}
+.step-box:hover,.related:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(27,23,48,0.10)}
+table{transition:box-shadow .35s}
+@media(max-width:640px){article table,table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+@media (prefers-reduced-motion:reduce){
+  .reveal-lite{opacity:1!important;transform:none!important;transition:none!important}
+  .scroll-progress{display:none}
+  .step-box,.related,.toc,.callout{transition:none}
+}
+</style>
 <!-- Google Analytics 4 (consent mode) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HT3RVLE6YS"></script>
 <script>
@@ -264,6 +282,32 @@ document.addEventListener('click', function(ev){
 });
 </script>
 <script src="/chat-widget.js" data-api="https://dentaljourneyindia.org"></script>
+<script>
+/* AURORA MOTION LAYER — progressive enhancement, no-JS safe */
+(function(){
+  var d=document,reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var veil=d.createElement('div');veil.className='aurora-veil';veil.setAttribute('aria-hidden','true');
+  d.body.insertBefore(veil,d.body.firstChild);
+  if(reduce)return;
+  var bar=d.createElement('div');bar.className='scroll-progress';bar.setAttribute('aria-hidden','true');
+  d.body.appendChild(bar);
+  var ticking=false;
+  function upd(){var max=d.documentElement.scrollHeight-window.innerHeight;bar.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';ticking=false}
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(upd);ticking=true}},{passive:true});
+  upd();
+  if('IntersectionObserver' in window){
+    var els=d.querySelectorAll('article h2,article h3,.step-box,.toc,.callout,.related,.cta-box,article table');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}});
+    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    Array.prototype.forEach.call(els,function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight){return}
+      el.classList.add('reveal-lite');io.observe(el);
+    });
+  }
+})();
+</script>
 <script src="/js/consent.js"></script>
 </body>
 </html>

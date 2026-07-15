@@ -10,22 +10,34 @@ Live domain: `https://dentaljourneyindia.org`. No build step, no frameworks, no 
 every page is fully self-contained (inline CSS + JS). Never introduce React, bundlers,
 or CDN dependencies; the architecture is deliberately zero-cost and zero-maintenance.
 
-## Brand tokens
+## Brand tokens — "Midnight Aurora" (redesign, July 2026)
 
 ```css
---navy:#0B1426  --navy-light:#121E36  --navy-mid:#1A2A4A
---gold:#C9A84C  --teal:#2EC4B6  --teal-dark:#1A9E92
---coral:#E07A5F --white:#F8F6F0 --gray-400:#8A8880 --gray-600:#5A5850
+/* dark (homepage) */
+--ink:#0D0B1E   --ink-light:#161230  --ink-mid:#221A45
+--mint:#3DE8C4  --mint-dark:#22C3A2  --violet:#A78BFA  --apricot:#FF8E6E
+--white:#F7F5FF --gray-400:#948FB0   --gray-600:#635E80
+/* light (articles) */
+--bg:#FAF9FE    --text:#1B1730  --text-s:#5C5876  --accent:#6D4AD8
+--accent-dark:#4F35A8  --accent-light:#F0EBFF  --border:#E4E1F0
+--save:#0E8A70  --save-bg:#E2F8F1
 ```
 
 - Fonts: **Playfair Display** (display/headings) + **DM Sans** (body), Google Fonts with
   `preconnect` to `fonts.googleapis.com` and `fonts.gstatic.com` (crossorigin) before the stylesheet.
-- Homepage (`index.html`): dark navy theme, teal primary CTAs, gold accents.
+- Homepage (`index.html`): dark ink theme, mint primary CTAs, violet secondary, apricot
+  tertiary. Gradient text accents use `linear-gradient(100deg,var(--mint),var(--violet))`.
 - Article/guide pages: light theme (copy conventions from `dental-tourism-india-guide.html`),
-  nav logo sits on a navy chip for legibility.
-- Motion: `riseIn` keyframes + `.reveal` IntersectionObserver pattern, spring-ish easing
-  `cubic-bezier(.22,1,.36,1)`, staggered `transition-delay` on grids, and ALWAYS a
-  `prefers-reduced-motion: reduce` block that disables animations and forces content visible.
+  nav logo sits on a dark ink chip for legibility.
+- Motion & depth ("3D/4D layer"): `riseIn` keyframes + `.reveal`/`.reveal-3d`
+  IntersectionObserver pattern, spring-ish easing `cubic-bezier(.22,1,.36,1)`, staggered
+  `transition-delay` on grids. Homepage adds: fixed aurora blob background (`.bg-scene`,
+  pure CSS radial gradients — no filter:blur), scroll progress bar, pointer-parallax
+  layers (`data-depth`), and 3D tilt cards (`.tilt` + `.tilt-glare`) — tilt/parallax run
+  ONLY behind `(hover:hover) and (pointer:fine)` + motion checks. Article pages share a
+  lighter "AURORA MOTION LAYER" block (scroll progress + `.aurora-veil` + `.reveal-lite`).
+  ALWAYS keep a `prefers-reduced-motion: reduce` block that disables animations and
+  forces content visible; JS effects must check `matchMedia('(prefers-reduced-motion: reduce)')`.
 
 ## Every page's required head
 
