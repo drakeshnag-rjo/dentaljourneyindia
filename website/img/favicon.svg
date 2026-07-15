@@ -1,26 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="DentalJourneyIndia">
+
   <defs>
-    <clipPath id="fc">
-      <circle cx="24" cy="24" r="23"/>
-    </clipPath>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EED9A0"/>
+      <stop offset="45%" stop-color="#C9A353"/>
+      <stop offset="100%" stop-color="#A87F3E"/>
+    </linearGradient>
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EED9A0"/>
+      <stop offset="55%" stop-color="#CBA65A"/>
+      <stop offset="100%" stop-color="#A87F3E"/>
+    </linearGradient>
+    <radialGradient id="discSheen" cx="35%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#1E5A4E"/>
+      <stop offset="100%" stop-color="#123B34" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <circle cx="24" cy="24" r="24" fill="#1B4A42" opacity="0.15"/>
-  <g clip-path="url(#fc)">
-    <g>
-      <animateTransform attributeName="transform" type="translate" values="0,0;-48,0" dur="12s" repeatCount="indefinite"/>
-      <path d="M28 12 C30 11, 34 12, 36 16 C37 19, 37 24, 35 28 C33 32, 30 34, 28 32 C26 30, 26 24, 27 18Z" fill="#0FA48A" opacity="0.2"/>
-      <path d="M16 16 C18 14, 22 15, 22 19 C22 24, 20 28, 18 30 C16 32, 14 30, 14 26 C14 22, 15 18, 16 16Z" fill="#0FA48A" opacity="0.15"/>
-      <path d="M76 12 C78 11, 82 12, 84 16 C85 19, 85 24, 83 28 C81 32, 78 34, 76 32 C74 30, 74 24, 75 18Z" fill="#0FA48A" opacity="0.2"/>
-      <path d="M64 16 C66 14, 70 15, 70 19 C70 24, 68 28, 66 30 C64 32, 62 30, 62 26 C62 22, 63 18, 64 16Z" fill="#0FA48A" opacity="0.15"/>
+
+  <g transform="translate(0,0) scale(1)">
+    <!-- disc -->
+    <circle cx="48" cy="48" r="44" fill="#123B34"/>
+    <circle cx="48" cy="48" r="44" fill="url(#discSheen)"/>
+    <!-- double gold ring -->
+    <circle cx="48" cy="48" r="44" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <circle cx="48" cy="48" r="39.5" fill="none" stroke="url(#gold)" stroke-width="0.6" opacity="0.55"/>
+    <!-- journey arc + minimal plane -->
+    <path d="M48,10.5 A37.5,37.5 0 1 1 12,58" fill="none" stroke="url(#gold)" stroke-width="1.1" opacity="0.75" stroke-linecap="round"/>
+    <g transform="translate(12,58) rotate(-118)">
+      <path d="M0,-4.6 L1.5,0 L0,4.6 L-1,1.1 L-4.4,0.9 L-5.6,2.5 L-6.6,2.2 L-5.9,0 L-6.6,-2.2 L-5.6,-2.5 L-4.4,-0.9 L-1,-1.1 Z" fill="url(#gold)" transform="rotate(90) scale(1.35)"/>
     </g>
-  </g>
-  <path d="M24 8 C24 8, 20 4, 16 7 C12 10, 11 16, 13 24 C15 30, 16 34, 17 39 C17 41, 18 42, 19.5 42 C21 42, 21.3 41, 21.3 39 C21.3 36, 22.5 36, 23 39 C23 41, 23.3 42, 24.8 42 C26.3 42, 27 41, 27.3 39 C28.3 34, 29 30, 30.5 24 C32.5 16, 32 10, 28 7 C24 4, 24 8, 24 8Z" fill="#0FA48A"/>
-  <path d="M20.5 15 C20.5 15, 19 13, 18.5 16 C18 18, 18 21, 19 23" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-  <circle cx="24" cy="24" r="23" fill="none" stroke="#0FA48A" stroke-width="1.5" opacity="0.3"/>
-  <g>
-    <animateMotion dur="4s" repeatCount="indefinite" path="M6 14 C16 6, 38 6, 44 18 C48 26, 38 38, 24 40 C10 40, 2 34, 4 30 C0 24, 0 18, 6 14" rotate="auto"/>
-    <ellipse cx="0" cy="0" rx="4.5" ry="1.2" fill="#3E97DB"/>
-    <path d="M-0.5 0 L-2.5 -3 L0.3 -0.4 Z" fill="#3E97DB" opacity="0.85"/>
-    <path d="M-0.5 0 L-2.5 3 L0.3 0.4 Z" fill="#3E97DB" opacity="0.85"/>
+    <!-- tooth -->
+    <path d="M48,27 C43.5,22.5 34.5,23.5 31,29.5 C27.5,35.5 28.5,43.5 31.2,51 C33.4,57.3 35.2,63.2 36.1,67.5 C36.6,70.1 38,71.8 39.9,71.8 C42.2,71.8 42.9,69.6 42.9,66.6 C42.9,62.2 45.4,60.9 48,60.9 C50.6,60.9 53.1,62.2 53.1,66.6 C53.1,69.6 53.8,71.8 56.1,71.8 C58,71.8 59.4,70.1 59.9,67.5 C60.8,63.2 62.6,57.3 64.8,51 C67.5,43.5 68.5,35.5 65,29.5 C61.5,23.5 52.5,22.5 48,27 Z" fill="#F6FBFA"/>
+    <path d="M39.5,32 C37.5,33.5 36.3,36.5 36.5,40" fill="none" stroke="#123B34" stroke-width="1.7" stroke-linecap="round" opacity="0.35"/>
+    <!-- gold sparkle -->
+    <path d="M63,20 L64.2,23.2 L67.4,24.4 L64.2,25.6 L63,28.8 L61.8,25.6 L58.6,24.4 L61.8,23.2 Z" fill="url(#gold)"/>
   </g>
 </svg>
